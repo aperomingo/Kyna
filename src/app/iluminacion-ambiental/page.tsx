@@ -36,13 +36,15 @@ export default function IluminacionPage() {
       <Header />
       
       {/* 2.1. Hero Informativo / Introducción */}
-      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
+      <section className="relative h-screen flex items-center justify-center overflow-hidden border-b-2 border-foreground/20">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/60 z-10" />
           <NextImage 
             src="/images/lighting.png" 
             alt="Iluminación Ambiental" 
             fill 
+            priority
+            sizes="100vw"
             className="object-cover"
           />
         </div>

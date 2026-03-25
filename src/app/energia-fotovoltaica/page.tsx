@@ -37,13 +37,15 @@ export default function SolarPage() {
       <Header />
       
       {/* 2.1. Hero Informativo / Introducción */}
-      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
+      <section className="relative h-screen flex items-center justify-center overflow-hidden border-b-2 border-foreground/20">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/70 z-10" />
           <NextImage 
-            src="https://images.unsplash.com/photo-1613665813446-82a78c468a18?q=80&w=2070&auto=format&fit=crop" 
+            src="/images/solar-fallback2.png"
             alt="Energía Fotovoltaica" 
             fill 
+            priority
+            sizes="100vw"
             className="object-cover"
           />
         </div>

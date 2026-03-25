@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -16,13 +16,26 @@ interface ProjectCarouselProps {
 
 export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const next = () => setCurrentIndex((prev) => (prev + 1) % projects.length);
-  const prev = () => setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length);
+  const next = useCallback(() => setCurrentIndex((prev) => (prev + 1) % projects.length), [projects.length]);
+  const prev = useCallback(() => setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length), [projects.length]);
+
+  // Auto-advance every 5 seconds, reset when user manually navigates
+  useEffect(() => {
+    if (paused) return;
+    timerRef.current = setInterval(next, 5000);
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+  }, [next, paused, currentIndex]);
 
   return (
-    <div className="relative group max-w-5xl mx-auto">
-      <div className="aspect-video relative rounded-[2.5rem] overflow-hidden shadow-2xl glass">
+    <div
+      className="relative group -mx-6 md:mx-auto md:max-w-5xl"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <div className="aspect-[3/2] md:aspect-video relative rounded-none md:rounded-[2.5rem] overflow-hidden shadow-2xl glass">
         {projects.map((project, index) => (
           <div
             key={index}
@@ -31,9 +44,15 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
               index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
             )}
           >
-            <Image src={project.image} alt={project.title} fill className="object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-10">
-              <h4 className="text-2xl font-bold text-white">{project.title}</h4>
+            <Image
+              src={project.image}
+              alt={project.title}
+              fill
+              sizes="(max-width: 1024px) 100vw, 1024px"
+              className="object-cover"
+            />
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end px-8 py-5 h-1/4">
+              <h4 className="text-base font-semibold text-white leading-tight">{project.title}</h4>
             </div>
           </div>
         ))}
@@ -61,7 +80,7 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
             onClick={() => setCurrentIndex(index)}
             className={cn(
               "w-3 h-3 rounded-full transition-all",
-              index === currentIndex ? "bg-accent w-8" : "bg-white/20"
+              index === currentIndex ? "bg-accent w-8" : "bg-foreground/20"
             )}
           />
         ))}

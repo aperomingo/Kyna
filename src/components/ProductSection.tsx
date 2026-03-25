@@ -35,6 +35,7 @@ export default function ProductSection({ products }: ProductSectionProps) {
               src={product.image} 
               alt={product.title} 
               fill 
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover hover:scale-105 transition-transform duration-700"
             />
           </div>

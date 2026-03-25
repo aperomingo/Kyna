@@ -4,13 +4,13 @@
   --font-sans: var(--font-inter), ui-sans-serif, system-ui;
   --font-display: var(--font-outfit), ui-sans-serif, system-ui;
   
-  --color-background: #0a0a0a;
-  --color-foreground: #f5f5f7;
+  --color-background: #141414;
+  --color-foreground: #ecebe4;
   --color-accent: #d4a373;
   --color-accent-hover: #b88b5d;
   --color-solar: #6a994e;
-  --color-muted: #1c1c1e;
-  --color-muted-foreground: #a1a1aa;
+  --color-muted: #222222;
+  --color-muted-foreground: #9a9a94;
   
   --radius-xl: 1rem;
   --radius-2xl: 1.5rem;
@@ -29,9 +29,19 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes ken-burns-in {
+  from { transform: scale(1); }
+  to   { transform: scale(1.12); }
+}
+
+@keyframes ken-burns-out {
+  from { transform: scale(1.12); }
+  to   { transform: scale(1); }
+}
+
 :root {
-  --background: #0a0a0a;
-  --foreground: #f5f5f7;
+  --background: #141414;
+  --foreground: #ecebe4;
   --accent: #d4a373;
   --solar: #6a994e;
 }
@@ -41,6 +51,10 @@ body {
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+button, a, input[type="submit"], input[type="button"] {
+  cursor: pointer;
 }
 
 /* Glassmorphism Utilities */
@@ -73,4 +87,40 @@ h1, h2, h3, h4, h5, h6 {
 
 .section-padding {
   @apply py-20 px-6 md:px-12 lg:px-24;
+}
+
+/* ── Light Theme ─────────────────────────── */
+html.light {
+  --color-background: #e2dfd5;
+  --color-foreground: #141414;
+  --color-muted: #d2cfc4;
+  --color-muted-foreground: #4a4a4a;
+  --color-accent: #b45309;
+  --color-accent-hover: #92400e;
+  --background: #e2dfd5;
+  --foreground: #141414;
+  --accent: #b45309;
+}
+
+html.light body {
+  background-color: #e2dfd5;
+  color: #141414;
+}
+
+html.light .glass {
+  background: rgba(235, 232, 222, 0.85);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+html.light .glass-accent {
+  background: rgba(212, 163, 115, 0.15);
+  border-color: rgba(212, 163, 115, 0.3);
+}
+
+html.light .text-gradient {
+  background: linear-gradient(135deg, #141414 0%, #b45309 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

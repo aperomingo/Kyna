@@ -6,7 +6,7 @@ import { sendEmailAction } from "@/app/actions";
 import { cn } from "@/lib/utils";
 
 interface ContactFormProps {
-  division?: "suelos" | "puertas" | "iluminacion" | "solar";
+  division?: "puertasytarima" | "carpinteria" | "iluminacion" | "solar";
 }
 
 export default function ContactForm({ division }: ContactFormProps) {
@@ -50,6 +50,20 @@ export default function ContactForm({ division }: ContactFormProps) {
   return (
     <form action={handleSubmit} className="glass p-8 rounded-2xl space-y-6">
       <div className="space-y-2">
+        <label htmlFor="name" className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+          Nombre
+        </label>
+        <input
+          id="name"
+          name="name"
+          type="text"
+          required
+          placeholder="Tu nombre completo"
+          className="w-full bg-background border border-foreground/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all"
+        />
+      </div>
+
+      <div className="space-y-2">
         <label htmlFor="email" className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
           Tu Email
         </label>
@@ -59,7 +73,7 @@ export default function ContactForm({ division }: ContactFormProps) {
           type="email"
           required
           placeholder="nombre@ejemplo.com"
-          className="w-full bg-background border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all"
+          className="w-full bg-background border border-foreground/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all"
         />
       </div>
 
@@ -73,7 +87,7 @@ export default function ContactForm({ division }: ContactFormProps) {
           type="text"
           required
           placeholder="¿En qué podemos ayudarte?"
-          className="w-full bg-background border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all"
+          className="w-full bg-background border border-foreground/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all"
         />
       </div>
 
@@ -87,7 +101,7 @@ export default function ContactForm({ division }: ContactFormProps) {
           required
           rows={4}
           placeholder="Cuéntanos más sobre tu proyecto..."
-          className="w-full bg-background border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all resize-none"
+          className="w-full bg-background border border-foreground/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all resize-none"
         ></textarea>
       </div>
 
@@ -99,7 +113,7 @@ export default function ContactForm({ division }: ContactFormProps) {
         type="submit"
         disabled={status === "loading"}
         className={cn(
-          "w-full py-4 bg-accent text-background rounded-xl font-bold text-lg flex items-center justify-center space-x-2 transition-all hover:bg-accent-hover hover:scale-[1.02] active:scale-[0.98]",
+          "w-full py-4 bg-accent text-white rounded-xl font-bold text-lg flex items-center justify-center space-x-2 transition-all hover:bg-accent-hover hover:scale-[1.02] active:scale-[0.98]",
           status === "loading" && "opacity-70 cursor-not-allowed"
         )}
       >
@@ -111,7 +125,7 @@ export default function ContactForm({ division }: ContactFormProps) {
         ) : (
           <>
             <Send size={20} />
-            <span>Enviar Mensaje</span>
+            <span>Enviar mensaje</span>
           </>
         )}
       </button>

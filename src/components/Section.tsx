@@ -15,7 +15,7 @@ export default function Section({ id, children, className, dark = false }: Secti
     <section
       id={id}
       className={cn(
-        "section-padding min-h-[70vh] flex flex-col justify-center relative overflow-hidden",
+        "section-padding min-h-[70vh] flex flex-col justify-center relative overflow-hidden border-b-2 border-foreground/10",
         dark ? "bg-background" : "bg-muted/30",
         className
       )}
