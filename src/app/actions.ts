@@ -1,11 +1,15 @@
 "use server";
 
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
 export async function sendEmailAction(formData: FormData) {
-  const name = formData.get("name");
-  const email = formData.get("email");
-  const subject = formData.get("subject");
-  const message = formData.get("message");
-  const division = formData.get("division") as string || "general";
+  const name = formData.get("name") as string;
+  const email = formData.get("email") as string;
+  const subject = formData.get("subject") as string;
+  const message = formData.get("message") as string;
+  const division = (formData.get("division") as string) || "general";
 
   const targetEmails = {
     general: "administracion@kynaobras.com",
@@ -22,16 +26,30 @@ export async function sendEmailAction(formData: FormData) {
     return { success: false, error: "Missing fields" };
   }
 
-  // Simulation: Log to console
-  console.log("--- SIMULATED EMAIL SENT ---");
-  console.log(`To: ${to}`);
-  console.log(`From: ${name} <${email}>`);
-  console.log(`Subject: ${subject}`);
-  console.log(`Body: ${message}`);
-  console.log("----------------------------");
+  try {
+    const { data, error } = await resend.emails.send({
+      from: "Kyna Group Web <onboarding@resend.dev>", // Replace with your domain in production
+      to: [to],
+      subject: `Nuevo contacto [${division.toUpperCase()}]: ${subject}`,
+      replyTo: email,
+      html: `
+        <h2>Nuevo mensaje desde la web de Kyna Group</h2>
+        <p><strong>De:</strong> ${name} (${email})</p>
+        <p><strong>División:</strong> ${division}</p>
+        <p><strong>Asunto:</strong> ${subject}</p>
+        <p><strong>Mensaje:</strong></p>
+        <div style="background: #f4f4f4; padding: 20px; border-radius: 8px;">
+          ${message.replace(/\n/g, "<br>")}
+        </div>
+      `,
+    });
 
-  // Simulate delay
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+    if (error) {
+      return { success: false, error: error.message };
+    }
 
-  return { success: true };
+    return { success: true, data };
+  } catch (err) {
+    return { success: false, error: "System error" };
+  }
 }

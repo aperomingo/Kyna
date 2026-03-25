@@ -17,6 +17,14 @@ export const metadata: Metadata = {
   title: "Kyna Obras - Reformas & Energía Fotovoltaica",
   description: "Especialistas en suelos de madera, puertas, iluminación ambiental y energía solar. Transformamos tu hogar con calidad y sostenibilidad.",
   metadataBase: new URL("https://www.kynaobras.com"),
+  openGraph: {
+    title: "Kyna Obras - Reformas & Energía Fotovoltaica",
+    description: "Especialistas en suelos de madera, puertas, iluminación ambiental y energía solar.",
+    url: "https://www.kynaobras.com",
+    siteName: "Kyna Group",
+    locale: "es_ES",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
