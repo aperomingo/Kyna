@@ -49,6 +49,8 @@ const GROUP_SERVICES = [
 ];
 
 export default function Home() {
+  
+ console.log('resend', process.env.RESEND_API_KEY)
   return (
     <main className="relative">
       <Header />

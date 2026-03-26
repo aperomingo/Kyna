@@ -1,55 +1,61 @@
-"use server";
+'use server';
 
-import { Resend } from "resend";
+import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function sendEmailAction(formData: FormData) {
-  const name = formData.get("name") as string;
-  const email = formData.get("email") as string;
-  const subject = formData.get("subject") as string;
-  const message = formData.get("message") as string;
-  const division = (formData.get("division") as string) || "general";
+  const name = formData.get('name') as string;
+  const userEmail = formData.get('email') as string;
+  const subject = formData.get('subject') as string;
+  const message = formData.get('message') as string;
+  const division = (formData.get('division') as string) || 'general';
 
   const targetEmails = {
-    general: "administracion@kynaobras.com",
-    puertasytarima: "puertasytarima@kynaobras.com",
-    carpinteria: "carpinteria@kynaobras.com",
-    iluminacion: "iluminacion@kynaobras.com",
-    solar: "energia@kynaobras.com",
+    general: 'administracion@kynaobras.com',
+    puertasytarima: 'puertasytarima@kynaobras.com',
+    carpinteria: 'carpinteria@kynaobras.com',
+    iluminacion: 'iluminacion@kynaobras.com',
+    solar: 'energia@kynaobras.com',
   };
 
-  const to = targetEmails[division as keyof typeof targetEmails] || targetEmails.general;
+  const to =
+    targetEmails[division as keyof typeof targetEmails] || targetEmails.general;
 
   // Validation
-  if (!name || !email || !subject || !message) {
-    return { success: false, error: "Missing fields" };
+  if (!name || !userEmail || !subject || !message) {
+    return { success: false, error: 'Missing fields' };
   }
 
   try {
     const { data, error } = await resend.emails.send({
-      from: "Kyna Group Web <onboarding@resend.dev>", // Replace with your domain in production
+      from: 'Kyna Group <onboarding@resend.dev>', // Replace with your domain in production
       to: [to],
       subject: `Nuevo contacto [${division.toUpperCase()}]: ${subject}`,
-      replyTo: email,
+      replyTo: userEmail,
       html: `
         <h2>Nuevo mensaje desde la web de Kyna Group</h2>
-        <p><strong>De:</strong> ${name} (${email})</p>
+        <p><strong>De:</strong> ${name} (${userEmail})</p>
         <p><strong>División:</strong> ${division}</p>
         <p><strong>Asunto:</strong> ${subject}</p>
         <p><strong>Mensaje:</strong></p>
         <div style="background: #f4f4f4; padding: 20px; border-radius: 8px;">
-          ${message.replace(/\n/g, "<br>")}
+          ${message.replace(/\n/g, '<br>')}
         </div>
       `,
     });
+
+    console.log('data, error', data, error);
 
     if (error) {
       return { success: false, error: error.message };
     }
 
     return { success: true, data };
-  } catch (err) {
-    return { success: false, error: "System error" };
+  } catch (err: unknown) {
+    return {
+      success: false,
+      error: `Error inesperado ${(err as Error)?.message}`,
+    };
   }
 }
