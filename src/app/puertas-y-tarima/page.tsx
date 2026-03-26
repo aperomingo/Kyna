@@ -45,6 +45,7 @@ export default function PuertasYTarimaPage() {
             alt="Puertas y Tarima"
             fill
             priority
+            loading="eager"
             sizes="100vw"
             className="object-cover"
           />
