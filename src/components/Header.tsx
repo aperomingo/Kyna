@@ -56,7 +56,7 @@ export default function Header() {
             "text-3xl font-display font-bold tracking-[0.2em] transition-colors duration-500",
             scrolled ? "text-foreground" : "text-white"
           )}>
-            KYNA<span className="text-accent">GROUP</span>
+            KYNA<span className="text-accent">GRUPO</span>
           </span>
         </Link>
 

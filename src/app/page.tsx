@@ -49,8 +49,6 @@ const GROUP_SERVICES = [
 ];
 
 export default function Home() {
-  
- console.log('resend', process.env.RESEND_API_KEY)
   return (
     <main className="relative">
       <Header />
@@ -62,7 +60,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-t via-transparent to-transparent z-10" />
           <NextImage 
             src="/images/hero-composite.png" 
-            alt="Kyna Group Hero" 
+            alt="Kyna Grupo" 
             fill 
             priority
             sizes="100vw"
@@ -73,11 +71,11 @@ export default function Home() {
         <div className="container mx-auto px-6 relative z-20 text-center space-y-12">
           <div className="inline-flex items-center space-x-2 px-6 py-2 bg-accent/10 border border-accent/20 rounded-full animate-fade-in shadow-2xl shadow-accent/10">
             <ShieldCheck className="text-accent w-4 h-4" />
-            <span className="text-accent text-xs font-bold uppercase tracking-[0.3em]">Excelencia Kyna Group</span>
+            <span className="text-accent text-xs font-bold uppercase tracking-[0.3em]">Excelencia Kyna Grupo</span>
           </div>
           
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-display font-bold leading-none tracking-tighter text-white animate-slide-up">
-            KYNA<span className="text-accent">GROUP</span>
+            KYNA<span className="text-accent">GRUPO</span>
           </h1>
           
           <p className="max-w-3xl mx-auto text-xl md:text-2xl text-white/90 leading-relaxed animate-fade-in delay-300 font-light">
@@ -100,7 +98,7 @@ export default function Home() {
           
           <div className="text-xl md:text-2xl text-muted-foreground leading-relaxed space-y-8 text-justify md:text-center">
             <p>
-              <strong className="text-foreground">Kyna Group</strong> no es solo una empresa de reformas; es el punto de encuentro de cuatro grupos de trabajo altamente especializados e independientes. Nuestra estructura única nos permite abordar cada proyecto con la profundidad técnica de un experto y la visión cohesiva de un equipo multidisciplinar.
+              <strong className="text-foreground">Kyna Grupo</strong> no es solo una empresa de reformas; es el punto de encuentro de cuatro grupos de trabajo altamente especializados e independientes. Nuestra estructura única nos permite abordar cada proyecto con la profundidad técnica de un experto y la visión cohesiva de un equipo multidisciplinar.
             </p>
             <p>
               Cada una de nuestras unidades operativas — <span className="text-accent">Carpintería</span>, <span className="text-accent">Puertas y Tarima</span>, <span className="text-accent">Iluminación</span> y <span className="text-accent">Energía Fotovoltaica</span> — cuenta con sus propios artesanos, técnicos y procesos. Esta independencia garantiza la excelencia en el detalle, mientras que nuestra identidad de grupo asegura una ejecución armónica en proyectos integrales.

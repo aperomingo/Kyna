@@ -29,12 +29,12 @@ export async function sendEmailAction(formData: FormData) {
 
   try {
     const { data, error } = await resend.emails.send({
-      from: 'Kyna Group <onboarding@resend.dev>', // Replace with your domain in production
+      from: `Kyna ${division.toUpperCase()} <${to}>`,
       to: [to],
       subject: `Nuevo contacto [${division.toUpperCase()}]: ${subject}`,
       replyTo: userEmail,
       html: `
-        <h2>Nuevo mensaje desde la web de Kyna Group</h2>
+        <h2>Nuevo mensaje desde la web de Kyna Grupo</h2>
         <p><strong>De:</strong> ${name} (${userEmail})</p>
         <p><strong>División:</strong> ${division}</p>
         <p><strong>Asunto:</strong> ${subject}</p>
