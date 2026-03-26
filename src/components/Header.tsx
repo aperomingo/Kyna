@@ -49,8 +49,8 @@ export default function Header() {
       <nav className="container mx-auto px-6 flex justify-between items-center">
         <div className="w-10" /> {/* spacer */}
         <Link href="/" className="flex flex-col items-center space-y-2 group">
-          <div className="w-12 h-12 bg-accent rounded-xl flex items-center justify-center group-hover:rotate-[360deg] transition-transform duration-1000 shadow-md shadow-accent/20">
-            <span className="text-background font-bold text-2xl">K</span>
+          <div className="w-12 h-12 bg-accent rounded-xl flex items-center justify-center transition-all duration-500 shadow-md shadow-accent/20 group-hover:scale-110">
+            <span className="text-background font-bold text-2xl rotate-90 transform-gpu" style={{ fontFamily: 'var(--font-outfit)' }}>K</span>
           </div>
           <span className={cn(
             "text-3xl font-display font-bold tracking-[0.2em] transition-colors duration-500",

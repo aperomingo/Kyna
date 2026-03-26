@@ -7,8 +7,8 @@ export default function Footer() {
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
         <div className="space-y-6">
           <Link href="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-accent rounded flex items-center justify-center">
-              <span className="text-background font-bold text-lg">K</span>
+            <div className="w-10 h-10 bg-accent rounded flex items-center justify-center shadow-md shadow-accent/20">
+              <span className="text-background font-bold text-xl rotate-90 transform-gpu" style={{ fontFamily: 'var(--font-outfit)' }}>K</span>
             </div>
             <span className="text-xl font-display font-bold tracking-tighter text-foreground">
               KYNA<span className="text-accent">OBRAS</span>
@@ -71,7 +71,7 @@ export default function Footer() {
         </div>
       </div>
       
-      <div className="container mx-auto pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
+      <div className="container mx-auto pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-center md:text-left text-sm text-muted-foreground">
         <p>© {new Date().getFullYear()} Kyna Obras. Todos los derechos reservados.</p>
         <p className="mt-2 md:mt-0">Diseñado con <span className="text-accent">♥</span> para un futuro sostenible.</p>
       </div>
