@@ -7,33 +7,38 @@ import ContactForm from "@/components/ContactForm";
 import NextImage from "next/image";
 import { Hammer } from "lucide-react";
 
+export const metadata = {
+  title: "Carpintería a Medida",
+  description: "Servicios de alta ebanistería en Madrid: muebles a medida, estanterías integradas, vestidores de lujo y restauración especializada de madera.",
+};
+
 const PRODUCTS = [
   {
-    title: "Muebles a Medida",
-    description: "Diseñamos y fabricamos cada mueble según las dimensiones y el estilo exacto de tu hogar. Desde aparadores hasta camas, cada pieza es única y construida para durar generaciones.",
-    image: "/images/carpinteria-card.png"
+    title: "Muebles a Medida de Alta Ebanistería",
+    description: "Donde la visión del cliente se encuentra con la maestría del ebanista. Diseñamos y fabricamos piezas icónicas que trascienden las modas: desde aparadores con marquetería contemporánea hasta mesas de comedor de una sola pieza de madera maciza. Cada mueble se construye bajo demanda, respetando los tiempos de curación de la madera y empleando ensambles tradicionales que garantizan una durabilidad de por vida. No fabricamos muebles, creamos el próximo legado de tu hogar.",
+    image: "/images/carpinteria/productos/custom-muebles.png"
   },
   {
-    title: "Estanterías y Librerías",
-    description: "Estanterías integradas y librerías empotradas que aprovechan al máximo cada rincón. Combinamos funcionalidad y estética con maderas seleccionadas y acabados personalizados.",
-    image: "/images/carpinteria-card.png"
+    title: "Estanterías y Librerías Integradas",
+    description: "Convertimos paredes desaprovechadas en el alma de tu espacio. Nuestras librerías se diseñan en perfecta simbiosis con la arquitectura de la estancia, utilizando sistemas de anclaje invisible, iluminación LED integrada y una selección exquisita de acabados que van desde los barnices naturales hasta los lacados de alto brillo. Soluciones de almacenamiento que optimizan cada centímetro cúbico, aportando orden, sofisticación y un valor añadido indiscutible a la propiedad.",
+    image: "/images/carpinteria/productos/custom-librerias.png"
   },
   {
-    title: "Armarios y Vestidores",
-    description: "Armarios empotrados y vestidores diseñados para maximizar el espacio. Interiores modulables, iluminación integrada y materiales de alta calidad que se adaptan a tu estilo de vida.",
-    image: "/images/carpinteria-card.png"
+    title: "Armarios y Vestidores Inteligentes",
+    description: "La cumbre de la organización personal. Diseñamos vestidores y armarios empotrados donde cada detalle está pensado: interiores en lino o maderas exóticas, cajoneras con cierre amortiguado, pantaloneros extraíbles y sistemas de iluminación por sensor. Optimizamos el espacio con una distribución lógica y personalizada, utilizando herrajes de gama alta que aseguran un funcionamiento silencioso y fluido. Transforma tu rutina diaria con un espacio diseñado exclusivamente para tus necesidades.",
+    image: "/images/carpinteria/productos/custom-vestidores.png"
   },
   {
-    title: "Tratamiento y Restauración",
-    description: "Recuperamos el esplendor original de tus muebles y suelos de madera. Lijado, barnizado, tintado y tratamientos protectores que devuelven la vida a la madera con un resultado impecable.",
-    image: "/images/carpinteria-card.png"
+    title: "Tratamiento y Restauración Especializada",
+    description: "Devolvemos la voz a la madera antigua. Nuestro equipo de restauración combina técnicas de conservación tradicionales con los tratamientos más avanzados de la industria. Realizamos procesos meticulosos de decapado, nutrición de fibras, lijado de precisión y barnizado artesanal para recuperar el esplendor de muebles de valor sentimental o histórico. Protegemos tus piezas contra el paso del tiempo, los rayos UV y la humedad, asegurando que su belleza perdure para las futuras generaciones.",
+    image: "/images/carpinteria/productos/custom-restauracion.png"
   }
 ];
 
 const PROJECTS = [
-  { title: "Vivienda en Pozuelo - Librería Empotrada a Medida", image: "/images/carpinteria-card.png" },
-  { title: "Ático Madrid - Armario Vestidor con Iluminación LED", image: "/images/carpinteria-card.png" },
-  { title: "Chalet en Las Rozas - Restauración Muebles Antiguos", image: "/images/carpinteria-card.png" }
+  { title: "Vivienda en Pozuelo - Librería Empotrada a Medida", image: "/images/carpinteria/proyectos/carpinteria-card.png" },
+  { title: "Ático Madrid - Armario Vestidor con Iluminación LED", image: "/images/carpinteria/proyectos/carpinteria-card.png" },
+  { title: "Chalet en Las Rozas - Restauración Muebles Antiguos", image: "/images/carpinteria/proyectos/carpinteria-card.png" }
 ];
 
 export default function CarpinteriaPage() {
@@ -42,11 +47,11 @@ export default function CarpinteriaPage() {
       <Header />
 
       {/* Hero */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden border-b-2 border-foreground/20">
+      <section className="relative h-screen flex items-center justify-center overflow-hidden border-b-2 border-foreground/20 pt-24">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/60 z-10" />
           <NextImage
-            src="/images/carpinteria-hero.png"
+            src="/images/carpinteria/carpinteria-hero.png"
             alt="Carpintería"
             fill
             priority

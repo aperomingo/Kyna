@@ -7,28 +7,33 @@ import ContactForm from "@/components/ContactForm";
 import NextImage from "next/image";
 import { Zap } from "lucide-react";
 
+export const metadata = {
+  title: "Energía Fotovoltaica y Paneles Solares",
+  description: "Instalación de paneles solares N-Type, baterías de litio e inversores híbridos en Madrid. Pásate al autoconsumo con la división de energía de Grupo Kyna.",
+};
+
 const PRODUCTS = [
   {
-    title: "Paneles de Alta Eficiencia",
-    description: "Máximo rendimiento en el mínimo espacio. Utilizamos tecnología monocristalina de última generación que garantiza una captación energética superior incluso en días nublados.",
-    image: "/images/solar-fallback.png"
+    title: "Paneles N-Type de Alta Eficiencia",
+    description: "La vanguardia tecnológica en tu tejado. Instalamos paneles de última generación con células N-Type de silicio monocristalino, que ofrecen tasas de degradación mínimas y una eficiencia superior al 22%. Estos módulos están diseñados para captar energía incluso con luz difusa en días nublados y presentan un coeficiente de temperatura excelente, manteniendo un rendimiento alto incluso en las jornadas más calurosas del verano. Potencia máxima, durabilidad garantizada por 25 años y una estética 'Full Black' elegante para tu hogar.",
+    image: "/images/energia/productos/solar-product.png"
   },
   {
-    title: "Sistemas de Almacenamiento",
-    description: "Independencia energética real. Baterías inteligentes de litio que almacenan el excedente de energía diurna para que pueda consumirla durante la noche, optimizando su ahorro al máximo.",
-    image: "/images/solar-fallback.png"
+    title: "Sistemas de Almacenamiento de Litio Ferro-Fosfato",
+    description: "Hacia la independencia energética total. Nuestras baterías de tecnología LiFePO4 son las más seguras y duraderas del mercado. Permiten almacenar el excedente de energía producido durante las horas centrales del día para que puedas consumirlo de forma gratuita cuando el sol se pone, reduciendo drásticamente tu factura eléctrica. Sistemas modulares y compactos que se integran perfectamente en cualquier espacio, con miles de ciclos de carga garantizados y una gestión de descarga inteligente.",
+    image: "/images/energia/productos/solar-product.png"
   },
   {
-    title: "Inversores de Vanguardia",
-    description: "El cerebro de su instalación. Inversores híbridos que gestionan el flujo de energía de forma automática y permiten monitorizar su producción y consumo en tiempo real desde su móvil.",
-    image: "/images/solar-fallback.png"
+    title: "Inversores Híbridos de Gestión Inteligente",
+    description: "El cerebro tecnológico de tu instalación. Nuestros inversores híbridos no solo convierten la energía solar en electricidad para tu hogar; gestionan de forma proactiva el flujo entre paneles, baterías, red eléctrica y cargas críticas. Gracias a nuestra plataforma de monitorización en la nube, podrás visualizar en tiempo real la producción y el ahorro desde tu móvil. Cuentan con funciones avanzadas de backup para mantener tu casa iluminada incluso durante un corte de suministro de la red general.",
+    image: "/images/energia/productos/solar-product.png"
   }
 ];
 
 const PROJECTS = [
-  { title: "Comunidad de Vecinos - Autoconsumo Colectivo", image: "/images/solar-fallback.png" },
-  { title: "Vivienda Aislada - Sistema Off-grid", image: "/images/solar-fallback.png" },
-  { title: "Nave Industrial - Instalación de 50kWp", image: "/images/solar-fallback.png" }
+  { title: "Comunidad de Vecinos - Autoconsumo Colectivo", image: "/images/energia/proyectos/solar-project.png" },
+  { title: "Vivienda Aislada - Sistema Off-grid", image: "/images/energia/proyectos/solar-project.png" },
+  { title: "Nave Industrial - Instalación de 50kWp", image: "/images/energia/proyectos/solar-project.png" }
 ];
 
 export default function SolarPage() {
@@ -37,11 +42,11 @@ export default function SolarPage() {
       <Header />
       
       {/* 2.1. Hero Informativo / Introducción */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden border-b-2 border-foreground/20">
+      <section className="relative h-screen flex items-center justify-center overflow-hidden border-b-2 border-foreground/20 pt-24">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/70 z-10" />
           <NextImage 
-            src="/images/solar-fallback2.png"
+            src="/images/energia/solar-fallback2.png"
             alt="Energía Fotovoltaica" 
             fill 
             priority

@@ -36,7 +36,7 @@ export async function sendEmailAction(formData: FormData) {
       subject: `Nuevo contacto [${division.toUpperCase()}]: ${subject}`,
       replyTo: userEmail,
       html: `
-        <h2>Nuevo mensaje desde la web de Kyna Grupo</h2>
+        <h2>Nuevo mensaje desde la web de Grupo Kyna</h2>
         <p><strong>Nombre:</strong> ${name}</p>
         <p><strong>De:</strong> ${userEmail}</p>
         <p><strong>Grupo:</strong> ${division}</p>

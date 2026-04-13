@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Cookie, X, Check, Shield } from "lucide-react";
+import { Cookie, Check, Shield } from "lucide-react";
 
 type CookieConsent = "all" | "necessary" | "denied" | null;
 
@@ -17,7 +17,7 @@ export default function CookieBanner() {
       // Small delay for a smooth entrance
       setTimeout(() => setVisible(true), 800);
     } else {
-      setConsent(stored);
+      setTimeout(() => setConsent(stored), 0);
     }
   }, []);
 
@@ -42,8 +42,7 @@ export default function CookieBanner() {
               <h3 className="text-lg font-bold text-foreground mb-1">Usamos cookies</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Utilizamos cookies propias y de terceros para mejorar tu experiencia de navegación. Puedes aceptarlas todas, solo las necesarias o rechazarlas.{" "}
-                {/* <Link href="/privacidad" className="text-accent hover:underline"> */}
-                <Link href="/#" className="text-accent hover:underline">
+                <Link href="/privacidad" className="text-accent hover:underline">
                   Más información
                 </Link>
               </p>

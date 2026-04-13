@@ -6,28 +6,33 @@ import ProjectCarousel from "@/components/ProjectCarousel";
 import ContactForm from "@/components/ContactForm";
 import NextImage from "next/image";
 
+export const metadata = {
+  title: "Iluminación Ambiental",
+  description: "Proyectos de iluminación ambiental en Madrid: foseados LED de alta gama, iluminación arquitectónica de acento y sistemas de control inteligente.",
+};
+
 const PRODUCTS = [
   {
-    title: "Sistemas de Foseado LED",
-    description: "La luz indirecta que transforma estancias. Creamos foseados perimetrales con tiras LED de alta fidelidad cromática que bañan las paredes de luz suave, eliminando sombras duras y aumentando la sensación de amplitud.",
-    image: "/images/lighting.png"
+    title: "Sistemas de Foseado LED de Alta Gama",
+    description: "La luz que define la estructura. Diseñamos foseados perimetrales y techos foseados utilizando perfiles de aluminio de disipación térmica y tiras LED de grado profesional con altísima fidelidad cromática (CRI >95). Esta técnica crea una iluminación indirecta uniforme, eliminando sombras duras y aportando una sensación de amplitud y ligereza visual inalcanzable con métodos tradicionales. Una solución arquitectónica invisible que convierte el techo en una superficie emisora de luz suave y relajante.",
+    image: "/images/iluminacion/productos/custom-foseado.png"
   },
   {
-    title: "Control Inteligente",
-    description: "Gestione el ambiente de su hogar desde cualquier lugar. Integramos sistemas de domótica avanzada que permiten programar escenas lumínicas, ajustar la temperatura del color y optimizar el consumo energético.",
-    image: "/images/lighting.png"
+    title: "Control Inteligente y Escenas Lumínicas",
+    description: "Tu hogar responde a tus emociones. Integramos los sistemas de control más avanzados (DALI, Casambi, KNX) para que puedas gestionar toda la iluminación desde interfaces elegantes o dispositivos móviles. Programamos escenas personalizadas para cada momento: desde la intensidad perfecta para una cena romántica hasta una configuración de máxima concentración para el teletrabajo. El control inteligente no es solo comodidad; es eficiencia energética real y diseño emocional al alcance de tu mano.",
+    image: "/images/iluminacion/productos/lighting-product.png"
   },
   {
-    title: "Iluminación Arquitectónica",
-    description: "Resaltamos lo que importa. Proyectores de acento y bañadores de pared diseñados para enfatizar elementos arquitectónicos, obras de arte o zonas de paso con una precisión milimétrica.",
-    image: "/images/lighting.png"
+    title: "Iluminación Arquitectónica y de Acento",
+    description: "Resaltamos el alma de tu espacio. Mediante proyectores de carril magnético, bañadores de pared y spots de ultra-bajo deslumbramiento, focalizamos la atención en elementos clave: una obra de arte, una textura de piedra o una pieza de mobiliario icónica. Utilizamos ópticas de precisión milimétrica para crear contraste y jerarquía visual, aportando profundidad dramática a las estancias. Una iluminación diseñada para ver la luz, pero no la luminaria, manteniendo el minimalismo del diseño.",
+    image: "/images/iluminacion/productos/custom-arquitectonica.png"
   }
 ];
 
 const PROJECTS = [
-  { title: "Villa de Lujo en Marbella - Iluminación Integral", image: "/images/lighting.png" },
-  { title: "Restaurante Estrellado Madrid - Escenas Dinámicas", image: "/images/lighting.png" },
-  { title: "Sede Corporativa - Eficiencia y Confort Visual", image: "/images/lighting.png" }
+  { title: "Villa de Lujo en Marbella - Iluminación Integral", image: "/images/iluminacion/proyectos/lighting-project.png" },
+  { title: "Restaurante Estrellado Madrid - Escenas Dinámicas", image: "/images/iluminacion/proyectos/lighting-project.png" },
+  { title: "Sede Corporativa - Eficiencia y Confort Visual", image: "/images/iluminacion/proyectos/lighting-project.png" }
 ];
 
 export default function IluminacionPage() {
@@ -36,11 +41,11 @@ export default function IluminacionPage() {
       <Header />
       
       {/* 2.1. Hero Informativo / Introducción */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden border-b-2 border-foreground/20">
+      <section className="relative h-screen flex items-center justify-center overflow-hidden border-b-2 border-foreground/20 pt-24">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/60 z-10" />
           <NextImage 
-            src="/images/lighting.png" 
+            src="/images/iluminacion/lighting.png" 
             alt="Iluminación Ambiental" 
             fill 
             priority

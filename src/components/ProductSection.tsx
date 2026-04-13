@@ -19,18 +19,11 @@ export default function ProductSection({ products }: ProductSectionProps) {
           key={index} 
           className={cn(
             "flex flex-col gap-12 items-center",
-            index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+            index % 2 === 0 ? "md:flex-row-reverse" : "md:flex-row"
           )}
         >
-          <div className="flex-1 space-y-6">
-            <h3 className="text-3xl md:text-4xl font-display font-bold text-foreground">
-              {product.title}
-            </h3>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              {product.description}
-            </p>
-          </div>
-          <div className="flex-1 w-full aspect-video md:aspect-square relative rounded-[2rem] overflow-hidden glass shadow-2xl">
+          {/* Image first in DOM for mobile column order */}
+          <div className="flex-1 w-full aspect-video md:aspect-square relative rounded-[2rem] overflow-hidden glass shadow-2xl transition-all duration-500 hover:shadow-accent/10">
             <Image 
               src={product.image} 
               alt={product.title} 
@@ -38,6 +31,15 @@ export default function ProductSection({ products }: ProductSectionProps) {
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover hover:scale-105 transition-transform duration-700"
             />
+          </div>
+
+          <div className="flex-1 space-y-6">
+            <h3 className="text-3xl md:text-4xl font-display font-bold text-foreground">
+              {product.title}
+            </h3>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              {product.description}
+            </p>
           </div>
         </div>
       ))}

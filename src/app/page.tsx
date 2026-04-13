@@ -3,7 +3,6 @@ import NextImage from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Section from "@/components/Section";
-import { cn } from "@/lib/utils";
 import { ArrowRight, ChevronDown, ShieldCheck, Layers, Hammer, Lightbulb, Zap, DoorOpen } from "lucide-react";
 
 const GROUP_SERVICES = [
@@ -14,7 +13,7 @@ const GROUP_SERVICES = [
     icon: <Hammer className="w-8 h-8" />,
     // href: "/carpinteria",
     href: '',
-    image: "/images/carpinteria-card.png",
+    image: "/images/carpinteria/carpinteria-card.png",
     color: "from-orange-500/20 to-transparent"
   },
   {
@@ -23,7 +22,7 @@ const GROUP_SERVICES = [
     description: "Puertas de diseño y suelos de tarima de alta calidad. Elegancia y carácter en cada acceso y bajo sus pies.",
     icon: <DoorOpen className="w-8 h-8" />,
     href: "/puertas-y-tarima",
-    image: "/images/puertas-tarima-hero.png",
+    image: "/images/puertas-y-tarima/puertas-tarima-hero.png",
     color: "from-amber-500/20 to-transparent"
   },
   {
@@ -33,7 +32,7 @@ const GROUP_SERVICES = [
     icon: <Lightbulb className="w-8 h-8" />,
     // href: "/iluminacion-ambiental",
     href: '',
-    image: "/images/lighting.png",
+    image: "/images/iluminacion/lighting.png",
     color: "from-yellow-500/20 to-transparent"
   },
   {
@@ -43,7 +42,7 @@ const GROUP_SERVICES = [
     icon: <Zap className="w-8 h-8" />,
     // href: "/energia-fotovoltaica",
     href: '',
-    image: "/images/solar-fallback.png",
+    image: "/images/energia/solar-fallback.png",
     color: "from-green-500/20 to-transparent"
   }
 ];
@@ -54,13 +53,13 @@ export default function Home() {
       <Header />
 
       {/* Hero Section */}
-      <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden border-b-2 border-foreground/20">
+      <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden border-b-2 border-foreground/20 pt-24">
         <div className="absolute inset-x-0 inset-y-0 z-0">
           <div className="absolute inset-0 bg-black/70 z-10" />
           <div className="absolute inset-0 bg-gradient-to-t via-transparent to-transparent z-10" />
           <NextImage 
-            src="/images/hero-composite.png" 
-            alt="Kyna Grupo" 
+            src="/images/home/hero-composite.png" 
+            alt="Grupo Kyna" 
             fill 
             priority
             sizes="100vw"
@@ -71,7 +70,7 @@ export default function Home() {
         <div className="container mx-auto px-6 relative z-20 text-center space-y-12">
           <div className="inline-flex items-center space-x-2 px-6 py-2 bg-accent/10 border border-accent/20 rounded-full animate-fade-in shadow-2xl shadow-accent/10">
             <ShieldCheck className="text-accent w-4 h-4" />
-            <span className="text-accent text-xs font-bold uppercase tracking-[0.3em]">Excelencia Kyna Grupo</span>
+            <span className="text-accent text-xs font-bold uppercase tracking-[0.3em]">Excelencia Grupo Kyna</span>
           </div>
           
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-display font-bold leading-none tracking-tighter text-white animate-slide-up">
@@ -98,17 +97,17 @@ export default function Home() {
           
           <div className="text-xl md:text-2xl text-muted-foreground leading-relaxed space-y-8 text-justify md:text-center">
             <p>
-              <strong className="text-foreground">Kyna Grupo</strong> no es solo una empresa de reformas; es el punto de encuentro de cuatro grupos de trabajo altamente especializados e independientes. Nuestra estructura única nos permite abordar cada proyecto con la profundidad técnica de un experto y la visión cohesiva de un equipo multidisciplinar.
+              <strong className="text-foreground">Grupo Kyna</strong> no es solo una empresa de reformas; es el punto de encuentro de cuatro grupos de trabajo altamente especializados e independientes. Nuestra estructura única nos permite abordar cada proyecto con la profundidad técnica de un experto y la visión cohesiva de un equipo multidisciplinar.
             </p>
             <p>
-              Cada una de nuestras unidades operativas — <span className="text-accent">Carpintería</span>, <span className="text-accent">Puertas y Tarima</span>, <span className="text-accent">Iluminación</span> y <span className="text-accent">Energía Fotovoltaica</span> — cuenta con sus propios artesanos, técnicos y procesos. Esta independencia garantiza la excelencia en el detalle, mientras que nuestra identidad de grupo asegura una ejecución armónica en proyectos integrales.
+              Cada una de nuestras unidades operativas — <span className="text-accent">Carpintería</span>, <span className="text-accent">Puertas y Tarima</span>, <span className="text-accent">Iluminación</span> y <span className="text-accent">Energía Fotovoltaica</span> — cuenta con sus propios artesanos, técnicos y procesos. Esta independencia garantiza la excelencia en el detalle, mientras que nuestra identidad de grupo asegura una ejecución armónica en proyectos.
             </p>
           </div>
         </div>
 
         {/* Service Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-24">
-        {GROUP_SERVICES.map((service, index) => (
+        {GROUP_SERVICES.map((service) => (
             <div key={service.id} className="flex flex-col gap-3">
               {/* Card */}
               <Link
