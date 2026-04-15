@@ -13,13 +13,18 @@ const outfit = Outfit({
   subsets: ['latin'],
 });
 
+const shareUrl = 'https://www.kynaobras.com';
+const shareTitle = 'Grupo Kyna | Especialistas en Madrid';
+const shareDesc =
+  'Especialistas en carpintería a medida, puertas y tarima, iluminación ambiental y energía fotovoltaica. Cuatro divisiones, una misma filosofía de calidad.';
+const shareImg = '/images/home/hero-composite.png';
+
 export const metadata: Metadata = {
   title: {
-    default: 'Grupo Kyna | Especialistas en Madrid',
+    default: shareTitle,
     template: '%s | Grupo Kyna',
   },
-  description:
-    'Especialistas en carpintería a medida, puertas y tarima, iluminación ambiental y energía fotovoltaica. Cuatro divisiones, una misma filosofía de calidad.',
+  description: shareDesc,
   keywords: [
     'reformas integrales Madrid',
     'reformas Parla',
@@ -37,9 +42,9 @@ export const metadata: Metadata = {
     'kyna',
     'kyna obras',
   ],
-  authors: [{ name: 'Grupo Kyna', url: 'https://www.kynaobras.com' }],
+  authors: [{ name: 'Grupo Kyna', url: shareUrl }],
   creator: 'Grupo Kyna',
-  metadataBase: new URL('https://www.kynaobras.com'),
+  metadataBase: new URL(shareUrl),
   alternates: {
     canonical: '/',
   },
@@ -55,28 +60,26 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Grupo Kyna | Especialistas en Madrid',
-    description:
-      'Especialistas en carpintería a medida, puertas y tarima, iluminación ambiental y energía fotovoltaica. Cuatro divisiones, una misma filosofía de calidad.',
-    url: 'https://www.kynaobras.com',
+    title: shareTitle,
+    description: shareDesc,
+    url: shareUrl,
     siteName: 'Grupo Kyna',
     locale: 'es_ES',
     type: 'website',
     images: [
       {
-        url: '/images/home/hero-composite.png',
+        url: shareImg,
         width: 1200,
         height: 630,
-        alt: 'Grupo Kyna - Especialistas en Madrid',
+        alt: shareTitle,
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Grupo Kyna | Especialistas en Madrid',
-    description:
-      'Especialistas en carpintería a medida, puertas y tarima, iluminación ambiental y energía fotovoltaica. Cuatro divisiones, una misma filosofía de calidad.',
-    images: ['/images/home/hero-composite.png'],
+    title: shareTitle,
+    description: shareDesc,
+    images: [shareImg],
   },
 };
 

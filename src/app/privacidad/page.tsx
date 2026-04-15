@@ -15,12 +15,12 @@ export default function PrivacidadPage() {
       <Header />
 
       {/* Hero */}
-      <section className="relative h-[30vh] flex items-center justify-center overflow-hidden bg-muted border-b-2 border-foreground/20 pt-24">
+      <section className="relative h-[45vh] min-h-[350px] flex items-center justify-center overflow-hidden bg-muted border-b-2 border-foreground/20 pt-24">
         <div className="container mx-auto px-6 text-center space-y-4">
           <div className="w-14 h-14 bg-accent/20 rounded-2xl flex items-center justify-center text-accent mx-auto">
             <Shield size={28} />
           </div>
-          <h1 className="text-4xl md:text-6xl font-display font-bold">Política de Privacidad</h1>
+          <h1 className="text-5xl md:text-7xl font-display font-bold">Política de Privacidad</h1>
           <p className="text-muted-foreground">Última actualización: Abril de 2026</p>
         </div>
       </section>

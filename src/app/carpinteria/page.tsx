@@ -36,9 +36,10 @@ const PRODUCTS = [
 ];
 
 const PROJECTS = [
-  { title: "Vivienda en Pozuelo - Librería Empotrada a Medida", image: "/images/carpinteria/proyectos/carpinteria-card.png" },
-  { title: "Ático Madrid - Armario Vestidor con Iluminación LED", image: "/images/carpinteria/proyectos/carpinteria-card.png" },
-  { title: "Chalet en Las Rozas - Restauración Muebles Antiguos", image: "/images/carpinteria/proyectos/carpinteria-card.png" }
+  { title: "Residencial La Moraleja - Librería de Nogal con LED Integrado", image: "/images/carpinteria/proyectos/proyecto-libreria.png" },
+  { title: "Ático Chamberí - Vestidor de Roble y Cristal Inteligente", image: "/images/carpinteria/proyectos/proyecto-vestidor.png" },
+  { title: "Chalet en Aravaca - Mesa de Comedor de una sola pieza en Roble", image: "/images/carpinteria/proyectos/proyecto-mueble.png" },
+  { title: "Palacete en Madrid - Restauración de Escritorio Luis XV", image: "/images/carpinteria/proyectos/proyecto-restauracion.png" }
 ];
 
 export default function CarpinteriaPage() {

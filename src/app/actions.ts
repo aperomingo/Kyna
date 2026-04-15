@@ -29,6 +29,21 @@ export async function sendEmailAction(formData: FormData) {
     return { success: false, error: 'Missing fields' };
   }
 
+  // SIMULATION for DEV mode
+  if (process.env.NODE_ENV === 'development') {
+    console.log('--- [DEV MODE] Simulated Email Send ---');
+    console.log('To:', to);
+    console.log('From:', name, `<${userEmail}>`);
+    console.log('Subject:', subject);
+    console.log('Message:', message);
+    console.log('---------------------------------------');
+    
+    // Artificial delay to test UI loading states
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    
+    return { success: true, data: { id: 'simulated-id' } };
+  }
+
   try {
     const { data, error } = await resend.emails.send({
       from: `Kyna ${division.toUpperCase()} <${emailSender}>`,

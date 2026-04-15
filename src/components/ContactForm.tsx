@@ -31,6 +31,12 @@ export default function ContactForm({ division }: ContactFormProps) {
     }
   }
 
+  const onFormSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    handleSubmit(formData);
+  };
+
   if (status === "success") {
     return (
       <div className="glass-accent p-8 rounded-2xl text-center space-y-4 animate-fade-in">
@@ -48,7 +54,7 @@ export default function ContactForm({ division }: ContactFormProps) {
   }
 
   return (
-    <form action={handleSubmit} className="glass p-8 rounded-2xl space-y-6">
+    <form onSubmit={onFormSubmit} className="glass p-8 rounded-2xl space-y-6">
       <div className="space-y-2">
         <label htmlFor="name" className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
           Nombre
@@ -58,8 +64,9 @@ export default function ContactForm({ division }: ContactFormProps) {
           name="name"
           type="text"
           required
+          disabled={status === "loading"}
           placeholder="Tu nombre completo"
-          className="w-full bg-background border border-foreground/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all"
+          className="w-full bg-background border border-foreground/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         />
       </div>
 
@@ -72,8 +79,9 @@ export default function ContactForm({ division }: ContactFormProps) {
           name="email"
           type="email"
           required
+          disabled={status === "loading"}
           placeholder="nombre@ejemplo.com"
-          className="w-full bg-background border border-foreground/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all"
+          className="w-full bg-background border border-foreground/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         />
       </div>
 
@@ -86,8 +94,9 @@ export default function ContactForm({ division }: ContactFormProps) {
           name="subject"
           type="text"
           required
+          disabled={status === "loading"}
           placeholder="¿En qué podemos ayudarte?"
-          className="w-full bg-background border border-foreground/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all"
+          className="w-full bg-background border border-foreground/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         />
       </div>
 
@@ -99,14 +108,15 @@ export default function ContactForm({ division }: ContactFormProps) {
           id="message"
           name="message"
           required
+          disabled={status === "loading"}
           rows={4}
           placeholder="Cuéntanos más sobre tu proyecto..."
-          className="w-full bg-background border border-foreground/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all resize-none"
+          className="w-full bg-background border border-foreground/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all resize-none disabled:opacity-50 disabled:cursor-not-allowed"
         ></textarea>
       </div>
 
       {status === "error" && (
-        <p className="text-red-400 text-sm font-medium">{message}</p>
+        <p className="text-red-400 text-sm font-medium animate-shake">{message}</p>
       )}
 
       <button
@@ -114,12 +124,12 @@ export default function ContactForm({ division }: ContactFormProps) {
         disabled={status === "loading"}
         className={cn(
           "w-full py-4 bg-accent text-white rounded-xl font-bold text-lg flex items-center justify-center space-x-2 transition-all hover:bg-accent-hover hover:scale-[1.02] active:scale-[0.98]",
-          status === "loading" && "opacity-70 cursor-not-allowed"
+          status === "loading" && "opacity-70 cursor-not-allowed grayscale-[0.5]"
         )}
       >
         {status === "loading" ? (
           <>
-            <Loader2 className="animate-spin" />
+            <Loader2 className="animate-spin w-5 h-5" />
             <span>Enviando...</span>
           </>
         ) : (

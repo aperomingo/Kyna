@@ -13,26 +13,26 @@ export const metadata = {
 
 const PRODUCTS = [
   {
-    title: "Sistemas de Foseado LED de Alta Gama",
-    description: "La luz que define la estructura. Diseñamos foseados perimetrales y techos foseados utilizando perfiles de aluminio de disipación térmica y tiras LED de grado profesional con altísima fidelidad cromática (CRI >95). Esta técnica crea una iluminación indirecta uniforme, eliminando sombras duras y aportando una sensación de amplitud y ligereza visual inalcanzable con métodos tradicionales. Una solución arquitectónica invisible que convierte el techo en una superficie emisora de luz suave y relajante.",
-    image: "/images/iluminacion/productos/custom-foseado.png"
+    title: "Puntos de luz",
+    description: "Nuestros puntos de luz representan la esencia de la iluminación minimalista y funcional. Diseñados para integrarse casi de forma invisible en techos y paredes, estos dispositivos de alta precisión permiten focalizar la atención en detalles arquitectónicos específicos o crear una base lumínica uniforme sin contaminar visualmente el espacio. Utilizamos tecnología de ultra-bajo deslumbramiento (Low UGR) que garantiza el máximo confort visual, eliminando reflejos molestos y creando una atmósfera elegante y profesional. Ideales para galerías de arte, pasillos de diseño o estancias donde la pureza de la arquitectura es la protagonista.",
+    image: "/images/iluminacion/productos/puntos-de-luz.png"
   },
   {
-    title: "Control Inteligente y Escenas Lumínicas",
-    description: "Tu hogar responde a tus emociones. Integramos los sistemas de control más avanzados (DALI, Casambi, KNX) para que puedas gestionar toda la iluminación desde interfaces elegantes o dispositivos móviles. Programamos escenas personalizadas para cada momento: desde la intensidad perfecta para una cena romántica hasta una configuración de máxima concentración para el teletrabajo. El control inteligente no es solo comodidad; es eficiencia energética real y diseño emocional al alcance de tu mano.",
-    image: "/images/iluminacion/productos/lighting-product.png"
+    title: "Leds",
+    description: "La revolución de la iluminación lineal y ambiental llega de la mano de nuestros sistemas LED de última generación. No se trata solo de iluminar, sino de transformar la geometría del espacio. Mediante la integración de tiras LED de alta densidad en foseados, rodapiés y perfiles ocultos, logramos una luz indirecta que baña las superficies con una suavidad inalcanzable por otros medios. Con una reproducción cromática excepcional (CRI >95), garantizamos que los colores y texturas de su hogar se vean tal y como fueron concebidos. Totalmente regulables y compatibles con sistemas de control inteligente, permiten adaptar la intensidad y el tono a cada momento del día.",
+    image: "/images/iluminacion/productos/leds.png"
   },
   {
-    title: "Iluminación Arquitectónica y de Acento",
-    description: "Resaltamos el alma de tu espacio. Mediante proyectores de carril magnético, bañadores de pared y spots de ultra-bajo deslumbramiento, focalizamos la atención en elementos clave: una obra de arte, una textura de piedra o una pieza de mobiliario icónica. Utilizamos ópticas de precisión milimétrica para crear contraste y jerarquía visual, aportando profundidad dramática a las estancias. Una iluminación diseñada para ver la luz, pero no la luminaria, manteniendo el minimalismo del diseño.",
-    image: "/images/iluminacion/productos/custom-arquitectonica.png"
+    title: "Lámparas personalizadas",
+    description: "Donde el diseño se encuentra con la exclusividad. Nuestras lámparas personalizadas son piezas únicas concebidas para convertirse en el alma de cualquier estancia. Colaboramos con maestros artesanos y utilizamos materiales de primera calidad —desde maderas nobles tratadas hasta metales cepillados y cristales soplados— para crear luminarias que no solo iluminan, sino que cuentan una historia. Cada pieza se diseña a medida del espacio, teniendo en cuenta las dimensiones, el estilo decorativo y las necesidades lumínicas específicas del cliente. Una inversión en arte y funcionalidad que eleva el valor estético de su propiedad a un nivel superior.",
+    image: "/images/iluminacion/productos/lamparas-personalizadas.png"
   }
 ];
 
 const PROJECTS = [
-  { title: "Villa de Lujo en Marbella - Iluminación Integral", image: "/images/iluminacion/proyectos/lighting-project.png" },
-  { title: "Restaurante Estrellado Madrid - Escenas Dinámicas", image: "/images/iluminacion/proyectos/lighting-project.png" },
-  { title: "Sede Corporativa - Eficiencia y Confort Visual", image: "/images/iluminacion/proyectos/lighting-project.png" }
+  { title: "Galería de Arte Contemporáneo - Iluminación Focalizada con Puntos de Luz", image: "/images/iluminacion/proyectos/proyecto-puntos-luz.png" },
+  { title: "Residencia Minimalista - Iluminación Indirecta mediante Foseados LED", image: "/images/iluminacion/proyectos/proyecto-restaurante.png" },
+  { title: "Ático de Diseño en Madrid - Lámparas de Autor Hechas a Medida", image: "/images/iluminacion/proyectos/proyecto-marbella.png" }
 ];
 
 export default function IluminacionPage() {

@@ -40,8 +40,7 @@ const GROUP_SERVICES = [
     title: "Energía Fotovoltaica",
     description: "Sostenibilidad y ahorro energético con sistemas solares de última generación.",
     icon: <Zap className="w-8 h-8" />,
-    // href: "/energia-fotovoltaica",
-    href: '',
+    href: "/energia-fotovoltaica",
     image: "/images/energia/solar-fallback.png",
     color: "from-green-500/20 to-transparent"
   }
