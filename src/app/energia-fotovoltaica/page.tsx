@@ -61,7 +61,7 @@ export default function SolarPage() {
           />
         </div>
         <div className="container mx-auto px-6 relative z-20 text-center space-y-6">
-          <div className="w-16 h-16 bg-solar/40 backdrop-blur-md rounded-2xl flex items-center justify-center text-white mx-auto mb-4 animate-pulse">
+          <div className="w-16 h-16 bg-accent/40 backdrop-blur-md rounded-2xl flex items-center justify-center text-white mx-auto mb-4 animate-pulse">
             <Zap size={32} />
           </div>
           <h1 className="text-5xl md:text-8xl font-display font-bold text-white animate-slide-up">

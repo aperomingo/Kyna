@@ -11,8 +11,7 @@ const GROUP_SERVICES = [
     title: "Carpintería",
     description: "Muebles a medida, estanterías, armarios y restauración de madera con maestría artesanal.",
     icon: <Hammer className="w-8 h-8" />,
-    // href: "/carpinteria",
-    href: '',
+    href: "/carpinteria",
     image: "/images/carpinteria/carpinteria-card.png",
     color: "from-orange-500/20 to-transparent"
   },
@@ -30,8 +29,7 @@ const GROUP_SERVICES = [
     title: "Iluminación Ambiental",
     description: "Atmósferas diseñadas a través de la luz para interiores y exteriores.",
     icon: <Lightbulb className="w-8 h-8" />,
-    // href: "/iluminacion-ambiental",
-    href: '',
+    href: "/iluminacion-ambiental",
     image: "/images/iluminacion/lighting.png",
     color: "from-yellow-500/20 to-transparent"
   },

@@ -5,6 +5,7 @@ import ProductSection from "@/components/ProductSection";
 import ProjectCarousel from "@/components/ProjectCarousel";
 import ContactForm from "@/components/ContactForm";
 import NextImage from "next/image";
+import { Lightbulb } from "lucide-react";
 
 export const metadata = {
   title: "Iluminación Ambiental",
@@ -54,6 +55,9 @@ export default function IluminacionPage() {
           />
         </div>
         <div className="container mx-auto px-6 relative z-20 text-center space-y-6">
+          <div className="w-16 h-16 bg-accent/40 backdrop-blur-md rounded-2xl flex items-center justify-center text-white mx-auto mb-4 animate-pulse">
+            <Lightbulb size={32} />
+          </div>
           <h1 className="text-5xl md:text-8xl font-display font-bold text-white animate-slide-up">
             Iluminación Ambiental
           </h1>
