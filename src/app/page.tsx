@@ -9,7 +9,7 @@ const GROUP_SERVICES = [
   {
     id: "carpinteria",
     title: "Carpintería",
-    description: "Muebles a medida, estanterías, armarios y restauración de madera con maestría artesanal.",
+    description: "Muebles a medida, estanterías y armarios de madera con maestría artesanal.",
     icon: <Hammer className="w-8 h-8" />,
     href: "/carpinteria",
     image: "/images/carpinteria/carpinteria-card.png",

@@ -9,7 +9,7 @@ import { Hammer } from "lucide-react";
 
 export const metadata = {
   title: "Carpintería a Medida",
-  description: "Servicios de alta ebanistería en Madrid: muebles a medida, estanterías integradas, vestidores de lujo y restauración especializada de madera.",
+  description: "Servicios de alta ebanistería en Madrid: muebles a medida, estanterías integradas y vestidores de lujo.",
 };
 
 const PRODUCTS = [
@@ -27,19 +27,13 @@ const PRODUCTS = [
     title: "Armarios y Vestidores Inteligentes",
     description: "La cumbre de la organización personal. Diseñamos vestidores y armarios empotrados donde cada detalle está pensado: interiores en lino o maderas exóticas, cajoneras con cierre amortiguado, pantaloneros extraíbles y sistemas de iluminación por sensor. Optimizamos el espacio con una distribución lógica y personalizada, utilizando herrajes de gama alta que aseguran un funcionamiento silencioso y fluido. Transforma tu rutina diaria con un espacio diseñado exclusivamente para tus necesidades.",
     image: "/images/carpinteria/productos/custom-vestidores.png"
-  },
-  {
-    title: "Tratamiento y Restauración Especializada",
-    description: "Devolvemos la voz a la madera antigua. Nuestro equipo de restauración combina técnicas de conservación tradicionales con los tratamientos más avanzados de la industria. Realizamos procesos meticulosos de decapado, nutrición de fibras, lijado de precisión y barnizado artesanal para recuperar el esplendor de muebles de valor sentimental o histórico. Protegemos tus piezas contra el paso del tiempo, los rayos UV y la humedad, asegurando que su belleza perdure para las futuras generaciones.",
-    image: "/images/carpinteria/productos/custom-restauracion.png"
   }
 ];
 
 const PROJECTS = [
   { title: "Residencial La Moraleja - Librería de Nogal con LED Integrado", image: "/images/carpinteria/proyectos/proyecto-libreria.png" },
   { title: "Ático Chamberí - Vestidor de Roble y Cristal Inteligente", image: "/images/carpinteria/proyectos/proyecto-vestidor.png" },
-  { title: "Chalet en Aravaca - Mesa de Comedor de una sola pieza en Roble", image: "/images/carpinteria/proyectos/proyecto-mueble.png" },
-  { title: "Palacete en Madrid - Restauración de Escritorio Luis XV", image: "/images/carpinteria/proyectos/proyecto-restauracion.png" }
+  { title: "Chalet en Aravaca - Mesa de Comedor de una sola pieza en Roble", image: "/images/carpinteria/proyectos/proyecto-mueble.png" }
 ];
 
 export default function CarpinteriaPage() {
@@ -68,7 +62,7 @@ export default function CarpinteriaPage() {
             Carpintería
           </h1>
           <p className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed animate-fade-in delay-300">
-            Artesanía en madera para espacios únicos. Muebles a medida, armarios, estanterías y restauración con maestría artesanal.
+            Artesanía en madera para espacios únicos. Muebles a medida, armarios y estanterías con maestría artesanal.
           </p>
         </div>
       </section>
