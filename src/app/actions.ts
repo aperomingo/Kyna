@@ -11,16 +11,19 @@ export async function sendEmailAction(formData: FormData) {
   const message = formData.get('message') as string;
   const division = (formData.get('division') as string) || 'general';
 
-  const targetEmails = {
-    general: 'administracion@kynaobras.com',
-    puertasytarima: 'puertasytarima@kynaobras.com',
-    carpinteria: 'carpinteria@kynaobras.com',
-    iluminacion: 'iluminacion@kynaobras.com',
-    solar: 'energia@kynaobras.com',
+  const sectionNames: Record<string, string> = {
+    puertasytarima: 'Puertas y Tarima',
+    carpinteria: 'Carpintería',
+    iluminacion: 'Iluminación Ambiental',
+    solar: 'Energía Fotovoltaica',
   };
 
-  const to =
-    targetEmails[division as keyof typeof targetEmails] || targetEmails.general;
+  const isFromSection = division !== 'general';
+  const to = 'presupuestos@kynaobras.com';
+
+  const emailSubject = isFromSection
+    ? `Presupuesto ${sectionNames[division] || division}: ${subject}`
+    : `Nuevo contacto: ${subject}`;
 
   const emailSender = 'web@kynaobras.com';
 
@@ -34,7 +37,7 @@ export async function sendEmailAction(formData: FormData) {
     console.log('--- [DEV MODE] Simulated Email Send ---');
     console.log('To:', to);
     console.log('From:', name, `<${userEmail}>`);
-    console.log('Subject:', subject);
+    console.log('Subject:', emailSubject);
     console.log('Message:', message);
     console.log('---------------------------------------');
     
@@ -48,7 +51,7 @@ export async function sendEmailAction(formData: FormData) {
     const { data, error } = await resend.emails.send({
       from: `Kyna ${division.toUpperCase()} <${emailSender}>`,
       to: [to],
-      subject: `Nuevo contacto [${division.toUpperCase()}]: ${subject}`,
+      subject: emailSubject,
       replyTo: userEmail,
       html: `
         <h2>Nuevo mensaje desde la web de Grupo Kyna</h2>

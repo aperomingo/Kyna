@@ -43,3 +43,9 @@ yarn-error.log*
 
 # vscode
 .vscode
+
+# Dossier tool generated files
+/tools/dosier/output/
+/tools/dosier/screenshots/
+/tools/dosier/b64/
+/*.pdf

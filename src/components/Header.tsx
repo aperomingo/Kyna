@@ -36,8 +36,8 @@ export default function Header() {
             src="/images/brand/logo-blanco.png" 
             alt="Grupo Kyna"
             fill 
-            sizes="200px"
             priority
+            unoptimized
             className="object-contain"
           />
         </Link>

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Dosier Corporativo — Grupo Kyna</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --gold: #c8a864;
+    --gold-light: #e8d5a0;
+    --dark: #0c0c12;
+    --dark-card: rgba(255, 255, 255, 0.03);
+    --dark-card-hover: rgba(255, 255, 255, 0.06);
+    --text: #e2e8f0;
+    --text-muted: #94a3b8;
+    --border: rgba(255, 255, 255, 0.08);
+    --border-gold: rgba(200, 168, 100, 0.2);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    font-size: 11px;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+    background: #0c0c12;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 25mm 20mm 20mm;
+  }
+
+  .page:last-child {
+    page-break-after: avoid;
+  }
+
+  /* Background decorative glows */
+  .glow-top-right {
+    position: absolute;
+    top: -150px;
+    right: -150px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(200, 168, 100, 0.04) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .glow-bottom-left {
+    position: absolute;
+    bottom: -150px;
+    left: -150px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(200, 168, 100, 0.03) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Page Header */
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .brand-logo {
+    height: 26px;
+    object-fit: contain;
+  }
+
+  .header-tag {
+    font-family: 'Outfit', sans-serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  /* Hero Section */
+  .hero {
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(200, 168, 100, 0.08);
+    border: 1px solid var(--border-gold);
+    color: var(--gold-light);
+    font-size: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 4px 10px;
+    border-radius: 50px;
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+
+  h1 span {
+    color: var(--gold);
+  }
+
+  .hero-desc {
+    font-size: 11px;
+    color: var(--text-muted);
+    max-width: 90%;
+    line-height: 1.6;
+  }
+
+  /* Grid layouts */
+  .grid-2x2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .division-card {
+    background: var(--dark-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .division-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--gold);
+    opacity: 0.7;
+  }
+
+  .division-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .division-title span {
+    color: var(--gold);
+  }
+
+  .division-desc {
+    font-size: 10px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* Method Section */
+  .methodology {
+    position: relative;
+    z-index: 2;
+  }
+
+  h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  h2::after {
+    content: '';
+    flex-grow: 1;
+    height: 1px;
+    background: var(--border);
+    margin-left: 10px;
+  }
+
+  .method-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+
+  .method-item {
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+    padding: 14px;
+  }
+
+  .method-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gold-light);
+    margin-bottom: 5px;
+  }
+
+  .method-desc {
+    font-size: 9.5px;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  /* Page Footer */
+  .page-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    margin-top: auto;
+    font-size: 8px;
+    color: var(--text-muted);
+    position: relative;
+    z-index: 2;
+  }
+
+  .page-footer a {
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  /* Page 2 specific styles */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .product-column {
+    display: flex;
+    flex-direction: column;
+    background: var(--dark-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .product-image-container {
+    width: 100%;
+    height: 115px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .product-content {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .product-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 6px;
+  }
+
+  .product-desc {
+    font-size: 9.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* Call to action */
+  .cta-section {
+    background: linear-gradient(135deg, rgba(200, 168, 100, 0.08) 0%, rgba(200, 168, 100, 0.02) 100%);
+    border: 1px solid var(--border-gold);
+    border-radius: 12px;
+    padding: 18px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cta-content {
+    max-width: 65%;
+  }
+
+  .cta-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 4px;
+  }
+
+  .cta-title span {
+    color: var(--gold);
+  }
+
+  .cta-desc {
+    font-size: 10px;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  .cta-info {
+    text-align: right;
+    font-family: 'Outfit', sans-serif;
+    font-size: 10px;
+    line-height: 1.6;
+  }
+
+  .cta-info-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+    color: var(--text);
+  }
+
+  .cta-info-item span {
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+</style>
+</head>
+<body>
+
+  <!-- PAGINA 1: PRESENTACION GLOBAL -->
+  <div class="page">
+    <div class="glow-top-right"></div>
+    <div class="glow-bottom-left"></div>
+
+    <div class="page-header">
+      <img src="data:image/png;base64,${imgs.logo}" class="brand-logo" alt="Grupo Kyna">
+      <div class="header-tag">Dosier Corporativo</div>
+    </div>
+
+    <div class="hero">
+      <div class="hero-tag">Grupo Kyna</div>
+      <h1>Excelencia e Integración en<br><span>Transformación de Espacios</span></h1>
+      <p class="hero-desc">
+        Grupo Kyna es el punto de encuentro de cuatro grupos de trabajo altamente especializados e independientes. Nuestra estructura única permite abordar cada proyecto con la profundidad técnica de un especialista y la visión cohesiva de un equipo multidisciplinar que garantiza la excelencia.
+      </p>
+    </div>
+
+    <h2>Nuestras Divisiones</h2>
+    <div class="grid-2x2">
+      <div class="division-card">
+        <div class="division-title">🔨 Carpintería <span>A Medida</span></div>
+        <div class="division-desc">Diseño y fabricación de muebles a medida, librerías integradas y vestidores de gama alta con madera noble y acabados premium.</div>
+      </div>
+      <div class="division-card">
+        <div class="division-title">🚪 Puertas <span>y Tarima</span></div>
+        <div class="division-desc">Puertas de paso de diseño y suelos de tarima flotante de alta resistencia. Aportamos carácter, calidez y elegancia bajo sus pies.</div>
+      </div>
+      <div class="division-card">
+        <div class="division-title">💡 Iluminación <span>Ambiental</span></div>
+        <div class="division-desc">Creación de atmósferas y proyectos lumínicos inteligentes y personalizados para interiores sofisticados y exteriores acogedores.</div>
+      </div>
+      <div class="division-card">
+        <div class="division-title">⚡ Energía <span>Fotovoltaica</span></div>
+        <div class="division-desc">Sistemas solares fotovoltaicos de última generación. Soluciones sostenibles de autoconsumo para el máximo ahorro energético.</div>
+      </div>
+    </div>
+
+    <div class="methodology">
+      <h2>El Método Kyna</h2>
+      <div class="method-list">
+        <div class="method-item">
+          <div class="method-title">Rigor Técnico</div>
+          <div class="method-desc">Cada división opera con sus propios técnicos e instaladores especializados bajo estrictos estándares de calidad.</div>
+        </div>
+        <div class="method-item">
+          <div class="method-title">Visión de Conjunto</div>
+          <div class="method-desc">Coordinación fluida y sin fisuras en proyectos complejos que combinan múltiples especialidades.</div>
+        </div>
+        <div class="method-item">
+          <div class="method-title">Sostenibilidad</div>
+          <div class="method-desc">Integramos materiales eficientes y sistemas de energía renovable para optimizar los consumos de cada hogar.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>Grupo Kyna Obras S.L.</span>
+      <span><a href="https://www.kynaobras.com" target="_blank">www.kynaobras.com</a></span>
+      <span>Pág. 01 / 02</span>
+    </div>
+  </div>
+
+  <!-- PAGINA 2: DIVISION CARPINTERIA -->
+  <div class="page">
+    <div class="glow-top-right"></div>
+    <div class="glow-bottom-left"></div>
+
+    <div class="page-header">
+      <img src="data:image/png;base64,${imgs.logo}" class="brand-logo" alt="Grupo Kyna">
+      <div class="header-tag">División Carpintería</div>
+    </div>
+
+    <div class="hero">
+      <div class="hero-tag">Artesanía de Autor</div>
+      <h1>Mobiliario a Medida y<br><span>Proyectos en Madera</span></h1>
+      <p class="hero-desc">
+        Fusionamos la artesanía tradicional con técnicas contemporáneas en nuestro taller propio. Seleccionamos materiales de primer nivel para dar vida a piezas exclusivas que responden con precisión milimétrica a las necesidades arquitectónicas y estéticas de su espacio.
+      </p>
+    </div>
+
+    <h2>Nuestro Catálogo de Soluciones</h2>
+    <div class="products-grid">
+      <div class="product-column">
+        <div class="product-image-container">
+          <img src="data:image/png;base64,${imgs.muebles}" class="product-image" alt="Muebles a medida">
+        </div>
+        <div class="product-content">
+          <div class="product-title">Muebles de Autor</div>
+          <div class="product-desc">Diseñamos y fabricamos aparadores, mesas de comedor y mobiliario auxiliar exclusivo bajo demanda. Empleamos ensambles tradicionales para garantizar piezas con alma y durabilidad de por vida.</div>
+        </div>
+      </div>
+
+      <div class="product-column">
+        <div class="product-image-container">
+          <img src="data:image/png;base64,${imgs.librerias}" class="product-image" alt="Librerías integradas">
+        </div>
+        <div class="product-content">
+          <div class="product-title">Librerías de Pared</div>
+          <div class="product-desc">Librerías y estanterías empotradas diseñadas a medida de la estancia. Con sistemas de anclaje invisible y perfiles de iluminación LED integrada para crear ambientes modernos y ordenados.</div>
+        </div>
+      </div>
+
+      <div class="product-column">
+        <div class="product-image-container">
+          <img src="data:image/png;base64,${imgs.vestidores}" class="product-image" alt="Armarios y vestidores">
+        </div>
+        <div class="product-content">
+          <div class="product-title">Armarios y Vestidores</div>
+          <div class="product-desc">Optimizamos su espacio con interiores personalizados en lino, cajoneras con cierre amortiguado, organizadores extraíbles y sistemas automáticos de iluminación LED por sensores.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <div class="cta-content">
+        <div class="cta-title">Tu Madera, <span>Tu Estilo</span></div>
+        <div class="cta-desc">Cuéntenos su idea. Nuestro equipo técnico e interioristas diseñarán y presupuestarán la solución óptima en madera que revalorizará su vivienda.</div>
+      </div>
+      <div class="cta-info">
+        <div class="cta-info-item">📞 <span>+34 633 938 034</span></div>
+        <div class="cta-info-item">✉️ <span>administracion@kynaobras.com</span></div>
+        <div class="cta-info-item">📍 <span>Parla, Madrid</span></div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>Grupo Kyna Obras S.L. · Carpintería</span>
+      <span><a href="https://www.kynaobras.com" target="_blank">www.kynaobras.com</a></span>
+      <span>Pág. 02 / 02</span>
+    </div>
+  </div>
+
+</body>
+</html>

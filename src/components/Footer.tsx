@@ -12,7 +12,7 @@ export default function Footer() {
               src="/images/brand/logo-blanco.png" 
               alt="Grupo Kyna" 
               fill 
-              sizes="200px"
+              unoptimized
               className="object-contain object-left"
             />
           </Link>

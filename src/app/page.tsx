@@ -59,7 +59,7 @@ export default function Home() {
             alt="Grupo Kyna" 
             fill 
             priority
-            sizes="100vw"
+            unoptimized
             className="object-cover"
           />
         </div>
@@ -97,7 +97,7 @@ export default function Home() {
               <strong className="text-foreground">Grupo Kyna</strong> no es solo una empresa de reformas; es el punto de encuentro de cuatro grupos de trabajo altamente especializados e independientes. Nuestra estructura única nos permite abordar cada proyecto con la profundidad técnica de un experto y la visión cohesiva de un equipo multidisciplinar.
             </p>
             <p>
-              Cada una de nuestras unidades operativas — <span className="text-accent">Carpintería</span>, <span className="text-accent">Puertas y Tarima</span>, <span className="text-accent">Iluminación</span> y <span className="text-accent">Energía Fotovoltaica</span> — cuenta con sus propios artesanos, técnicos y procesos. Esta independencia garantiza la excelencia en el detalle, mientras que nuestra identidad de grupo asegura una ejecución armónica en proyectos.
+              Cada una de nuestras unidades operativas — <span className="text-accent">Carpintería</span>, <span className="text-accent">Puertas y Tarima</span>, <span className="text-accent">Iluminación</span> y <span className="text-accent">Energía Fotovoltaica</span> — cuenta con sus propios técnicos y procesos. Esta independencia garantiza la excelencia en el detalle, mientras que nuestra identidad de grupo asegura una ejecución armónica en proyectos.
             </p>
           </div>
         </div>
@@ -118,7 +118,7 @@ export default function Home() {
                   src={service.image} 
                   alt={service.title} 
                   fill 
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  unoptimized
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
               </div>
@@ -180,13 +180,13 @@ export default function Home() {
               icon: <Layers className="w-8 h-8" />
             },
             {
-              title: "Compromiso Sostenible",
+              title: "Sostenibilidad",
               desc: "Priorizamos soluciones que minimizan el impacto ambiental y maximizan el ahorro.",
               icon: <Zap className="w-8 h-8" />
             },
             {
               title: "Atención Exclusiva",
-              desc: "Un interlocutor experto para cada una de sus necesidades especializadas.",
+              desc: "Recibe un asesoramiento especializado de nuestros profesionales.",
               icon: <ArrowRight className="w-8 h-8" />
             }
           ].map((pillar, idx) => (

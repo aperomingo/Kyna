@@ -9,46 +9,46 @@ import { DoorOpen } from "lucide-react";
 
 export const metadata = {
   title: "Puertas y Suelos de Tarima",
-  description: "Instalación de puertas de interior suelo a techo, tarima flotante de roble natural y suelos laminados de alta resistencia AC5/AC6 en Madrid.",
+  description: "Instalación de puertas de interior suelo a techo, tarima flotante de roble natural y suelos laminados en Madrid.",
 };
 
 const PRODUCTS = [
   {
     title: "Puertas de Interior",
-    description: "Diseñamos puertas que son verdaderas piezas de arquitectura interior. Desde modelos de suelo a techo con sistemas de bisagras ocultas y picaportes magnéticos, hasta diseños atemporales en maderas nobles, lacados sedosos o cerramientos de cristal. Nuestras puertas no solo dividen ambientes; aportan aislamiento termoacústico de primer nivel, una experiencia táctil premium y un cierre hermético de precisión. Un elemento funcional elevado a la categoría de obra de arte que define el carácter de tu hogar.",
+    description: "Instalamos puertas con la precisión que tu hogar merece. Nuestro equipo especializado se encarga de todo el proceso: desde la toma de medidas milimétricas y la preparación del premarco, hasta el montaje final con sistemas de bisagras ocultas, picaportes magnéticos y ajuste hermético de holguras. Trabajamos con modelos de suelo a techo, puertas correderas empotradas, abatibles y pivotantes en maderas nobles, lacados sedosos o cerramientos de cristal. Garantizamos un aislamiento termoacústico de primer nivel, un cierre suave y silencioso, y un acabado impecable que se integra a la perfección con el rodapié y las molduras existentes. Instalación limpia, rápida y sin sorpresas.",
     image: "/images/puertas-y-tarima/productos/puertas-interior.png"
   },
   {
-    title: "Tarima Flotante",
-    description: "El equilibrio perfecto entre confort absoluto, la nobleza de la naturaleza y la técnica moderna. Nuestras tarimas flotantes aportan la calidez inigualable de la madera natural a cada paso, apoyadas sobre sistemas multicapa de ingeniería que garantizan una estabilidad dimensional excepcional frente a cambios de humedad y temperatura. Totalmente compatibles con sistemas de suelo radiante, ofrecen una pisada acústicamente amortiguada y acabados super mate, aceitados o barnizados que envejecen ganando belleza década tras década.",
-    image: "/images/puertas-y-tarima/productos/suelo-flotante.png"
+    title: "Instalación de Rodapiés",
+    description: "El detalle final que define el carácter y la limpieza de una estancia. Nos encargamos de la instalación precisa de rodapiés en todo tipo de acabados: lacados en blanco, maderas naturales a juego con la tarima o sistemas integrados a ras de pared. Realizamos una fijación invisible mediante adhesivos de alta resistencia y un sellado profesional que previene la entrada de humedad y suciedad. Un remate limpio, recto y duradero para un acabado impecable.",
+    image: "/images/puertas-y-tarima/productos/instalacion-rodapies.png"
   },
   {
-    title: "Suelo Laminado de Alta Resistencia",
-    description: "Rendimiento técnico insuperable sin comprometer una estética deslumbrante. Nuestra exclusiva selección de suelos laminados de alta definición (AC5 y AC6) reproduce con un realismo táctil y visual asombroso las vetas, poros y nudos de las maderas más exquisitas. Es la elección definitiva para espacios de altísimo tránsito, hogares familiares o boutiques comerciales. Incorporan tratamientos hidrófugos avanzados y protección anti-rayones, manteniendo un aspecto inmaculado durante años con un nivel de mantenimiento prácticamente nulo.",
+    title: "Suelo Laminado",
+    description: "Rendimiento técnico insuperable sin comprometer una estética deslumbrante. Nuestra exclusiva selección de suelos laminados de alta definición reproduce con un realismo táctil y visual asombroso las vetas, poros y nudos de las maderas más exquisitas. Es la elección definitiva para espacios de altísimo tránsito, hogares familiares o comercios. Incorporan tratamientos hidrófugos avanzados y protección anti-rayones, manteniendo un aspecto intacto durante años con un nivel de mantenimiento prácticamente nulo.",
     image: "/images/puertas-y-tarima/productos/suelo-laminado.png"
   }
 ];
 
 const PROJECTS = [
   { 
-    title: "Residencial Puerta de Hierro - Puertas de Suelo a Techo y Rodapié Integrado", 
+    title: "Puertas de Suelo a Techo", 
     image: "/images/puertas-y-tarima/proyectos/puertas-techo-madrid.png" 
   },
   { 
-    title: "Vivienda Unifamiliar La Moraleja - Tarima de Roble Natural en Formato Gran Formato", 
+    title: "Tarima de Roble Natural en Formato Gran Formato", 
     image: "/images/puertas-y-tarima/proyectos/suelo-madera-natural.png" 
   },
   { 
-    title: "Showroom Comercial Madrid Centro - Suelo Laminado AC6 Diseño Industrial", 
+    title: "Suelo Laminado Diseño Industrial", 
     image: "/images/puertas-y-tarima/proyectos/suelo-laminado-premium.png" 
   },
   { 
-    title: "Ático Chamberí - Combinación de Puertas Lacadas Blancas y Suelo de Roble Claro", 
+    title: "Combinación de Puertas Lacadas Blancas y Suelo de Roble Claro", 
     image: "/images/puertas-y-tarima/proyectos/combinacion-blanco-roble.png" 
   },
   { 
-    title: "Dormitorio Principal Suite - Vestidor a Medida y Parquet de Nogal Seleccionado", 
+    title: "Vestidor a Medida y Parquet de Nogal Seleccionado", 
     image: "/images/puertas-y-tarima/proyectos/vestidor-tarima-lujo.png" 
   }
 ];
@@ -67,8 +67,7 @@ export default function PuertasYTarimaPage() {
             alt="Puertas y Tarima"
             fill
             priority
-            loading="eager"
-            sizes="100vw"
+            unoptimized
             className="object-cover"
           />
         </div>

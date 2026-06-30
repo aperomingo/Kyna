@@ -9,13 +9,13 @@ import { Hammer } from "lucide-react";
 
 export const metadata = {
   title: "Carpintería a Medida",
-  description: "Servicios de alta ebanistería en Madrid: muebles a medida, estanterías integradas y vestidores de lujo.",
+  description: "Servicios de alta calidad en Madrid: muebles a medida, estanterías integradas y vestidores de lujo.",
 };
 
 const PRODUCTS = [
   {
-    title: "Muebles a Medida de Alta Ebanistería",
-    description: "Donde la visión del cliente se encuentra con la maestría del ebanista. Diseñamos y fabricamos piezas icónicas que trascienden las modas: desde aparadores con marquetería contemporánea hasta mesas de comedor de una sola pieza de madera maciza. Cada mueble se construye bajo demanda, respetando los tiempos de curación de la madera y empleando ensambles tradicionales que garantizan una durabilidad de por vida. No fabricamos muebles, creamos el próximo legado de tu hogar.",
+    title: "Muebles a Medida",
+    description: "Donde la visión del cliente se encuentra con la maestría de nuestros profesionales. Diseñamos y fabricamos piezas icónicas que trascienden las modas: desde aparadores con marquetería contemporánea hasta mesas de comedor de una sola pieza de madera maciza. Cada mueble se construye bajo demanda, respetando los tiempos de curación de la madera y empleando ensambles tradicionales que garantizan una durabilidad de por vida. No fabricamos muebles, creamos el próximo legado de tu hogar.",
     image: "/images/carpinteria/productos/custom-muebles.png"
   },
   {
@@ -24,16 +24,16 @@ const PRODUCTS = [
     image: "/images/carpinteria/productos/custom-librerias.png"
   },
   {
-    title: "Armarios y Vestidores Inteligentes",
+    title: "Armarios y Vestidores con Luz Ambiental",
     description: "La cumbre de la organización personal. Diseñamos vestidores y armarios empotrados donde cada detalle está pensado: interiores en lino o maderas exóticas, cajoneras con cierre amortiguado, pantaloneros extraíbles y sistemas de iluminación por sensor. Optimizamos el espacio con una distribución lógica y personalizada, utilizando herrajes de gama alta que aseguran un funcionamiento silencioso y fluido. Transforma tu rutina diaria con un espacio diseñado exclusivamente para tus necesidades.",
     image: "/images/carpinteria/productos/custom-vestidores.png"
   }
 ];
 
 const PROJECTS = [
-  { title: "Residencial La Moraleja - Librería de Nogal con LED Integrado", image: "/images/carpinteria/proyectos/proyecto-libreria.png" },
-  { title: "Ático Chamberí - Vestidor de Roble y Cristal Inteligente", image: "/images/carpinteria/proyectos/proyecto-vestidor.png" },
-  { title: "Chalet en Aravaca - Mesa de Comedor de una sola pieza en Roble", image: "/images/carpinteria/proyectos/proyecto-mueble.png" }
+  { title: "Librería de Nogal con LED Integrado", image: "/images/carpinteria/proyectos/proyecto-libreria.png" },
+  { title: "Vestidor de Roble y Cristal Inteligente", image: "/images/carpinteria/proyectos/proyecto-vestidor.png" },
+  { title: "Mesa de Comedor de una sola pieza en Roble", image: "/images/carpinteria/proyectos/proyecto-mueble.png" }
 ];
 
 export default function CarpinteriaPage() {
@@ -46,11 +46,11 @@ export default function CarpinteriaPage() {
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/60 z-10" />
           <NextImage
-            src="/images/carpinteria/carpinteria-hero.png"
+            src="/images/carpinteria/carpentry-assembly-workshop.png"
             alt="Carpintería"
             fill
             priority
-            sizes="100vw"
+            unoptimized
             className="object-cover"
           />
         </div>
@@ -87,7 +87,7 @@ export default function CarpinteriaPage() {
           <div className="space-y-6">
             <h2 className="text-5xl font-display font-bold">Tu Madera, <br /><span className="text-accent">Tu Estilo</span></h2>
             <p className="text-xl text-muted-foreground">
-              Cuéntanos tu proyecto y nuestros artesanos diseñarán la solución perfecta en madera para tu hogar.
+              Cuéntanos tu proyecto y nuestros expertos diseñarán la solución perfecta en madera para tu hogar.
             </p>
           </div>
           <ContactForm division="carpinteria" />
