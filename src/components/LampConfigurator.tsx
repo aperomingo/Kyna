@@ -427,7 +427,7 @@ export default function LampConfigurator() {
       ) - totalPrice,
   };
 
-  const ledUpperDeltas = {
+  const ledUpperDeltas: Record<string, number> = {
     no: getPriceForConfig(wood, woodSub, lighting, lightingSub, lightingDesign, suspension, suspensionSub, varnish, 'no', lightingDimmer) - totalPrice,
     si: getPriceForConfig(wood, woodSub, lighting, lightingSub, lightingDesign, suspension, suspensionSub, varnish, 'si', lightingDimmer) - totalPrice,
   };
