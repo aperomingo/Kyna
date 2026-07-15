@@ -3,6 +3,7 @@ import NextImage from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Section from "@/components/Section";
+import LampConfigurator from "@/components/LampConfigurator";
 import { ArrowRight, ChevronDown, ShieldCheck, Layers, Hammer, Lightbulb, Zap, DoorOpen } from "lucide-react";
 
 const GROUP_SERVICES = [
@@ -155,6 +156,20 @@ export default function Home() {
           ))}
         </div>
       </Section>
+
+      {/* Lamp Configurator Section */}
+      {/* <Section id="personaliza" dark className="pt-32 pb-32">
+        <div className="text-center space-y-4 mb-20">
+          <h2 className="text-4xl md:text-6xl font-display font-bold">
+            Personaliza tu <span className="text-accent">Lámpara</span>
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Diseña una pieza única eligiendo cada detalle. Madera, luz y estilo a tu medida.
+          </p>
+          <div className="w-24 h-1 bg-accent mx-auto rounded-full" />
+        </div>
+        <LampConfigurator />
+      </Section> */}
 
       {/* Methodology Section */}
       <Section id="methodology" className="pb-48">

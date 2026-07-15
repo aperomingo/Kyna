@@ -54,6 +54,47 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Unified scrollbar for all scrollable elements */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-accent) transparent;
+}
+
+/* Webkit scrollbar (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-hover);
+}
+
+::-webkit-scrollbar-button:single-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+::-webkit-scrollbar-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
 button, a, input[type="submit"], input[type="button"] {
   cursor: pointer;
 }
