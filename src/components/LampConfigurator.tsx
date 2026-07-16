@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import NextImage from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, CheckCircle, Loader2, X } from 'lucide-react';
@@ -160,6 +160,126 @@ const BARNIZ_LABELS: Record<string, string> = {
   si: 'Sí',
 };
 
+const isCombinationComplete = (
+  w: string,
+  wSub: string,
+  l: string,
+  lSub: string,
+  lDesign: string,
+  s: string,
+  sSub: string,
+  v: string,
+  lLedUpper: string,
+  lDimmer: string,
+) => {
+  return !!(
+    w &&
+    wSub &&
+    l &&
+    (l === 'halogenos'
+      ? lSub
+      : (lSub && lDesign && (lSub !== 'regulable' || lDimmer))
+    ) &&
+    s &&
+    (s === 'cadenas' ? sSub : true)
+  );
+};
+
+const calculateMinPrice = (): number => {
+  let minPrice = Infinity;
+
+  // 1. Woods
+  const woods = Object.keys(WOOD_PRICES);
+  
+  for (const w of woods) {
+    // 2. Wood subs (filtering those that start with the wood name)
+    const wSubs = Object.keys(SUB_WOOD_PRICES).filter(key => key.startsWith(w));
+    
+    for (const wSub of wSubs) {
+      // 3. Lighting options
+      const lightings = Object.keys(LIGHTING_PRICES);
+      
+      for (const l of lightings) {
+        // 4. Lighting sub-options
+        const lSubs = Object.keys(SUB_LIGHTING_PRICES);
+        
+        for (const lSub of lSubs) {
+          // Halógenos only supports calidos, blancos, neutros (not regulable)
+          if (l === 'halogenos' && lSub === 'regulable') continue;
+          
+          // 5. LED designs
+          const lDesigns = l === 'leds' ? Object.keys(LED_DESIGN_PRICES) : [''];
+          
+          for (const lDesign of lDesigns) {
+            // 6. Dimmers
+            const lDimmers = (l === 'leds' && lSub === 'regulable') 
+              ? Object.keys(DIMMER_PRICES) 
+              : [''];
+              
+            for (const lDimmer of lDimmers) {
+              // 7. Led Upper
+              const lLedUppers = ['', ...Object.keys(LED_UPPER_PRICES)];
+              
+              for (const lLedUpper of lLedUppers) {
+                // 8. Suspension
+                const suspensions = Object.keys(SUSPENSION_PRICES);
+                
+                for (const s of suspensions) {
+                  // 9. Suspension sub-options
+                  const sSubs = s === 'cadenas' 
+                    ? Object.keys(SUB_SUSPENSION_PRICES)
+                    : [''];
+                    
+                  for (const sSub of sSubs) {
+                    // 10. Varnish
+                    const varnishes = ['', ...Object.keys(BARNIZ_LABELS)];
+                    
+                    for (const v of varnishes) {
+                      if (!isCombinationComplete(w, wSub, l, lSub, lDesign, s, sSub, v, lLedUpper, lDimmer)) {
+                        continue;
+                      }
+
+                      const lengthSuffix = wSub.split('_')[1] || '50';
+                      const woodPrice = WOOD_PRICES[w] || 0;
+                      const woodSubPrice = SUB_WOOD_PRICES[wSub] || 0;
+                      
+                      // Halogen count defaults to 2 for minimum price calculations
+                      const hCount = 2;
+                      const lightingPrice = l === 'halogenos' ? (hCount * 35) : (LIGHTING_PRICES[l] || 0);
+                      const lightingSubPrice = SUB_LIGHTING_PRICES[lSub] || 0;
+                      const ledDesignPrice = (l === 'leds' && lDesign) ? (LED_DESIGN_PRICES[lDesign]?.[lengthSuffix] || 0) : 0;
+                      const ledUpperPrice = (lLedUpper === 'si') ? 40 : 0;
+                      const dimmerPrice = (l === 'leds' && lSub === 'regulable' && lDimmer) ? (DIMMER_PRICES[lDimmer] || 0) : 0;
+                      const suspensionPrice = SUSPENSION_PRICES[s] || 0;
+                      
+                      let suspensionSubPrice = 0;
+                      if (s === 'cadenas' && sSub) {
+                        suspensionSubPrice = SUB_SUSPENSION_PRICES[sSub]?.[lengthSuffix] || 0;
+                      } else if (s === 'cuerdas') {
+                        suspensionSubPrice = CUERDAS_PRICES[lengthSuffix] || 0;
+                      }
+                      
+                      const varnishPrice = (v === 'si') ? (BARNIZ_PRICES[lengthSuffix] || 0) : 0;
+                      
+                      const price = BASE_PRICE + woodPrice + woodSubPrice + lightingPrice + lightingSubPrice + ledDesignPrice + ledUpperPrice + dimmerPrice + suspensionPrice + suspensionSubPrice + varnishPrice;
+                      
+                      if (price < minPrice) {
+                        minPrice = price;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  return minPrice === Infinity ? 0 : minPrice;
+};
+
 function PriceDelta({ delta }: { delta: number }) {
   return (
     <span
@@ -222,6 +342,7 @@ function OptionGroup({
 }
 
 export default function LampConfigurator() {
+  const minPrice = useMemo(() => calculateMinPrice(), []);
   const [wood, setWood] = useState('');
   const [woodSub, setWoodSub] = useState('');
   const [lighting, setLighting] = useState('');
@@ -646,7 +767,7 @@ export default function LampConfigurator() {
             Desde
           </span>
           <span className="text-xl md:text-3xl font-display font-bold text-accent">
-            96€
+            {minPrice}€
           </span>
         </div>
         {/* Example Image Label */}
