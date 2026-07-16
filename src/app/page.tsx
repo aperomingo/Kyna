@@ -158,7 +158,7 @@ export default function Home() {
       </Section>
 
       {/* Lamp Configurator Section */}
-      {/* <Section id="personaliza" dark className="pt-32 pb-32">
+      <Section id="personaliza" dark className="pt-32 pb-32">
         <div className="text-center space-y-4 mb-20">
           <h2 className="text-4xl md:text-6xl font-display font-bold">
             Personaliza tu <span className="text-accent">Lámpara</span>
@@ -169,7 +169,7 @@ export default function Home() {
           <div className="w-24 h-1 bg-accent mx-auto rounded-full" />
         </div>
         <LampConfigurator />
-      </Section> */}
+      </Section>
 
       {/* Methodology Section */}
       <Section id="methodology" className="pb-48">

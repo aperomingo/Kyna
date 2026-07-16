@@ -232,6 +232,7 @@ export default function LampConfigurator() {
   const [suspension, setSuspension] = useState('');
   const [suspensionSub, setSuspensionSub] = useState('');
   const [varnish, setVarnish] = useState('');
+  const [halogenCount, setHalogenCount] = useState(2);
   const [showValidationErrors, setShowValidationErrors] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [formStatus, setFormStatus] = useState<
@@ -250,14 +251,15 @@ export default function LampConfigurator() {
     v: string,
     lLedUpper: string,
     lDimmer: string,
+    hCount: number = halogenCount,
   ) => {
     const lengthSuffix = wSub.split('_')[1] || '50';
     const woodPrice = w ? (WOOD_PRICES[w] || 0) : 0;
     const woodSubPrice = wSub ? (SUB_WOOD_PRICES[wSub] || 0) : 0;
-    const lightingPrice = l ? (LIGHTING_PRICES[l] || 0) : 0;
+    const lightingPrice = l ? (l === 'halogenos' ? (hCount * 35) : (LIGHTING_PRICES[l] || 0)) : 0;
     const lightingSubPrice = lSub ? (SUB_LIGHTING_PRICES[lSub] || 0) : 0;
     const ledDesignPrice = (l === 'leds' && lDesign) ? (LED_DESIGN_PRICES[lDesign]?.[lengthSuffix] || 0) : 0;
-    const ledUpperPrice = (l === 'leds' && lLedUpper === 'si') ? 40 : 0;
+    const ledUpperPrice = (lLedUpper === 'si') ? 40 : 0;
     const dimmerPrice = (l === 'leds' && lSub === 'regulable' && lDimmer) ? (DIMMER_PRICES[lDimmer] || 0) : 0;
     const suspensionPrice = s ? (SUSPENSION_PRICES[s] || 0) : 0;
     let suspensionSubPrice = 0;
@@ -296,7 +298,7 @@ export default function LampConfigurator() {
     lightingDimmer,
   );
 
-  const configSummary = `Tablón: ${wood ? `${WOOD_LABELS[wood]} (${SUB_WOOD_LABELS[woodSub]})` : 'No seleccionado'} | Iluminación: ${lighting ? `${LIGHTING_LABELS[lighting]} (${SUB_LIGHTING_LABELS[lightingSub]}${lighting === 'leds' ? ` - ${LED_DESIGN_LABELS[lightingDesign]}` : ''})` : 'No seleccionada'} | Sujeción: ${suspension ? `${SUSPENSION_LABELS[suspension]}${suspension === 'cadenas' ? ` (${SUB_SUSPENSION_LABELS[suspensionSub]})` : ''}` : 'No seleccionada'} | Barniz: ${varnish ? BARNIZ_LABELS[varnish] : 'No seleccionado'} | Total: ${totalPrice}€`;
+  const configSummary = `Tablón: ${wood ? `${WOOD_LABELS[wood]} (${SUB_WOOD_LABELS[woodSub]})` : 'No seleccionado'} | Iluminación: ${lighting ? `${LIGHTING_LABELS[lighting]} (${lighting === 'halogenos' ? `${halogenCount} uds. - ` : ''}${SUB_LIGHTING_LABELS[lightingSub]}${lighting === 'leds' ? ` - ${LED_DESIGN_LABELS[lightingDesign]}` : ''})` : 'No seleccionada'} | Led superior: ${lightingLedUpper ? LED_UPPER_LABELS[lightingLedUpper] : 'No seleccionado'} | Sujeción: ${suspension ? `${SUSPENSION_LABELS[suspension]}${suspension === 'cadenas' ? ` (${SUB_SUSPENSION_LABELS[suspensionSub]})` : ''}` : 'No seleccionada'} | Barniz: ${varnish ? BARNIZ_LABELS[varnish] : 'No seleccionado'} | Total: ${totalPrice}€`;
 
   const woodDeltas = {
     abeto:
@@ -523,8 +525,8 @@ export default function LampConfigurator() {
   const handleLightingChange = (val: string) => {
     setLighting(val);
     setLightingSub('');
-    setLightingLedUpper('');
     setLightingDimmer('');
+    setHalogenCount(2);
     if (val === 'leds') {
       setLightingDesign('dos_lineas');
     } else {
@@ -566,10 +568,13 @@ export default function LampConfigurator() {
     formData.append('division', 'lámpara');
     // Append lamp configuration to the message
     const userMessage = (formData.get('message') as string) || '';
-    const ledUpperSummary = (lighting === 'leds' && lightingLedUpper === 'si') ? ` | Led superior: Sí` : '';
+    const ledUpperSummary = (lightingLedUpper === 'si') ? `\nLed superior: Sí` : '';
     const dimmerSummary = (lighting === 'leds' && lightingSub === 'regulable' && lightingDimmer) ? ` | Controlador: ${DIMMER_LABELS[lightingDimmer]}` : '';
     const varnishSummary = (varnish === 'si') ? `\nBarniz: Sí` : '';
-    const fullMessage = `${userMessage}\n\n--- Configuración de lámpara ---\nTablón: ${WOOD_LABELS[wood]} (${SUB_WOOD_LABELS[woodSub]})\nIluminación: ${lighting ? `${LIGHTING_LABELS[lighting]} (${SUB_LIGHTING_LABELS[lightingSub]}${lighting === 'leds' ? ` - ${LED_DESIGN_LABELS[lightingDesign]}` : ''})${ledUpperSummary}${dimmerSummary}` : 'No seleccionada'}\nSujeción: ${SUSPENSION_LABELS[suspension]}${suspension === 'cadenas' ? ` (${SUB_SUSPENSION_LABELS[suspensionSub]})` : ''}${varnishSummary}\nPrecio total: ${totalPrice}€`;
+    const lightingDetail = lighting
+      ? `${LIGHTING_LABELS[lighting]} (${lighting === 'halogenos' ? `${halogenCount} uds. - ` : ''}${SUB_LIGHTING_LABELS[lightingSub]}${lighting === 'leds' ? ` - ${LED_DESIGN_LABELS[lightingDesign]}` : ''})${dimmerSummary}`
+      : 'No seleccionada';
+    const fullMessage = `${userMessage}\n\n--- Configuración de lámpara ---\nTablón: ${WOOD_LABELS[wood]} (${SUB_WOOD_LABELS[woodSub]})\nIluminación: ${lightingDetail}${ledUpperSummary}\nSujeción: ${SUSPENSION_LABELS[suspension]}${suspension === 'cadenas' ? ` (${SUB_SUSPENSION_LABELS[suspensionSub]})` : ''}${varnishSummary}\nPrecio total: ${totalPrice}€`;
     formData.set('message', fullMessage);
     setFormStatus('loading');
     try {
@@ -592,9 +597,11 @@ export default function LampConfigurator() {
   const woodPriceSum = (wood ? WOOD_PRICES[wood] || 0 : 0) + (woodSub ? SUB_WOOD_PRICES[woodSub] || 0 : 0);
   const lengthSuffix = woodSub ? (woodSub.split('_')[1] || '50') : '50';
   const ledDesignPrice = (lighting === 'leds' && lightingDesign) ? (LED_DESIGN_PRICES[lightingDesign]?.[lengthSuffix] || 0) : 0;
-  const ledUpperPrice = (lighting === 'leds' && lightingLedUpper === 'si') ? 40 : 0;
+  const ledUpperPrice = (lightingLedUpper === 'si') ? 40 : 0;
   const dimmerPrice = (lighting === 'leds' && lightingSub === 'regulable' && lightingDimmer) ? (DIMMER_PRICES[lightingDimmer] || 0) : 0;
-  const lightingPriceSum = (lighting ? LIGHTING_PRICES[lighting] || 0 : 0) + (lightingSub ? SUB_LIGHTING_PRICES[lightingSub] || 0 : 0) + (lighting === 'leds' ? ledDesignPrice + ledUpperPrice + dimmerPrice : 0);
+  const lightingPriceSum = (lighting
+    ? (lighting === 'halogenos' ? halogenCount * 35 : LIGHTING_PRICES[lighting] || 0)
+    : 0) + (lightingSub ? SUB_LIGHTING_PRICES[lightingSub] || 0 : 0) + (lighting === 'leds' ? ledDesignPrice + dimmerPrice : 0);
   
   let suspensionSubPrice = 0;
   if (suspension === 'cadenas' && suspensionSub) {
@@ -747,6 +754,38 @@ export default function LampConfigurator() {
           {/* Sub-opciones de iluminación */}
           {lighting && (
             <div className="space-y-4 animate-fade-in">
+              {/* Cantidad de halógenos (sólo para halógenos, primera subopción) */}
+              {lighting === 'halogenos' && (
+                <div className="pl-4 border-l-2 border-accent/30 space-y-2">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground block">
+                    Cantidad de halógenos * (+{halogenCount * 35}€)
+                  </span>
+                  <div className="flex items-center gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setHalogenCount(Math.max(2, halogenCount - 1))}
+                      disabled={halogenCount <= 2}
+                      className="w-10 h-10 rounded-xl border-2 border-foreground/10 flex items-center justify-center text-foreground/75 hover:border-foreground/20 hover:text-foreground disabled:opacity-40 disabled:pointer-events-none transition-all duration-300 font-bold text-lg"
+                    >
+                      -
+                    </button>
+                    <span className="w-8 text-center font-display font-bold text-lg text-accent">
+                      {halogenCount}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setHalogenCount(halogenCount + 1)}
+                      className="w-10 h-10 rounded-xl border-2 border-foreground/10 flex items-center justify-center text-foreground/75 hover:border-foreground/20 hover:text-foreground transition-all duration-300 font-bold text-lg"
+                    >
+                      +
+                    </button>
+                    <span className="text-xs text-muted-foreground ml-2">
+                      (Mínimo 2 halógenos. 35€ por halógeno)
+                    </span>
+                  </div>
+                </div>
+              )}
+
               {/* Grupo 2: Diseño del LED (sólo para LEDs, ahora primero) */}
               {lighting === 'leds' && (
                 <div className="pl-4 border-l-2 border-accent/30 space-y-2">
@@ -875,38 +914,7 @@ export default function LampConfigurator() {
                 </div>
               )}
 
-              {/* Grupo 3: Led superior (sólo para LEDs) */}
-              {lighting === 'leds' && (
-                <div className="pl-4 border-l-2 border-accent/30 space-y-2 animate-fade-in">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground block">
-                    {lightingLedUpper === 'si' ? 'Led superior (+40€)' : 'Led superior'}
-                  </span>
-                  <div className="flex flex-wrap gap-2">
-                    {['no', 'si'].map((subOpt) => {
-                      const isSelected = lightingLedUpper === subOpt;
-                      return (
-                        <button
-                          key={subOpt}
-                          onClick={() => setLightingLedUpper(subOpt)}
-                          className={`
-                            relative px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-300 border-2
-                            ${
-                              isSelected
-                                ? 'border-accent bg-accent/15 text-accent shadow-sm shadow-accent/5'
-                                : 'border-foreground/10 text-foreground/60 hover:border-foreground/20 hover:text-foreground'
-                            }
-                          `}
-                        >
-                          <span>{LED_UPPER_LABELS[subOpt]}</span>
-                          <PriceDelta
-                            delta={isSelected ? 0 : ledUpperDeltas[subOpt]}
-                          />
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
+
             </div>
           )}
 
@@ -971,6 +979,17 @@ export default function LampConfigurator() {
               <span>⚠️</span> Por favor, selecciona una sujeción
             </p>
           )}
+        </div>
+
+        <div className="space-y-4">
+          <OptionGroup
+            label={lightingLedUpper ? `Led superior (+${ledUpperPrice}€)` : "Led superior"}
+            options={['no', 'si']}
+            value={lightingLedUpper}
+            onChange={setLightingLedUpper}
+            labels={LED_UPPER_LABELS}
+            deltas={ledUpperDeltas}
+          />
         </div>
 
         <div className="space-y-4">
@@ -1091,58 +1110,78 @@ export default function LampConfigurator() {
                   </div>
 
                   {/* Config Summary */}
-                  <div className={`grid gap-2 mb-4 ${varnish === 'si' ? 'grid-cols-2 sm:grid-cols-4' : 'grid-cols-1 sm:grid-cols-3'}`}>
-                    <div className="bg-accent/5 border border-accent/15 rounded-lg px-2 py-2 text-center">
-                      <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground block">
-                        Tablón
-                      </span>
-                      <span className="text-xs font-bold text-accent">
-                        {WOOD_LABELS[wood]}{' '}
-                        <span className="text-[10px] text-muted-foreground block font-normal">
-                          ({SUB_WOOD_LABELS[woodSub]})
-                        </span>
-                      </span>
-                    </div>
-                    <div className="bg-accent/5 border border-accent/15 rounded-lg px-2 py-2 text-center">
-                      <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground block">
-                        Iluminación
-                      </span>
-                      <span className="text-xs font-bold text-accent">
-                        {lighting ? LIGHTING_LABELS[lighting] : 'No'}{' '}
-                        {lighting && (
-                          <span className="text-[10px] text-muted-foreground block font-normal">
-                            ({SUB_LIGHTING_LABELS[lightingSub]}
-                            {lighting === 'leds' ? ` - ${LED_DESIGN_LABELS[lightingDesign]}` : ''}
-                            {lighting === 'leds' && lightingLedUpper === 'si' ? ' + Led Superior' : ''}
-                            {lighting === 'leds' && lightingSub === 'regulable' && lightingDimmer ? ` (${DIMMER_LABELS[lightingDimmer]})` : ''})
+                  {(() => {
+                    const summaryColsCount = 3 + (varnish === 'si' ? 1 : 0) + (lightingLedUpper === 'si' ? 1 : 0);
+                    return (
+                      <div className={cn(
+                        "grid gap-2 mb-4 grid-cols-2",
+                        summaryColsCount === 3 && "sm:grid-cols-3",
+                        summaryColsCount === 4 && "sm:grid-cols-4",
+                        summaryColsCount === 5 && "sm:grid-cols-5"
+                      )}>
+                        <div className="bg-accent/5 border border-accent/15 rounded-lg px-2 py-2 text-center">
+                          <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground block">
+                            Tablón
                           </span>
-                        )}
-                      </span>
-                    </div>
-                    <div className="bg-accent/5 border border-accent/15 rounded-lg px-2 py-2 text-center">
-                      <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground block">
-                        Sujeción
-                      </span>
-                      <span className="text-xs font-bold text-accent">
-                        {SUSPENSION_LABELS[suspension]}
-                        {suspension === 'cadenas' && (
-                          <span className="text-[10px] text-muted-foreground block font-normal">
-                            ({SUB_SUSPENSION_LABELS[suspensionSub]})
+                          <span className="text-xs font-bold text-accent">
+                            {WOOD_LABELS[wood]}{' '}
+                            <span className="text-[10px] text-muted-foreground block font-normal">
+                              ({SUB_WOOD_LABELS[woodSub]})
+                            </span>
                           </span>
+                        </div>
+                        <div className="bg-accent/5 border border-accent/15 rounded-lg px-2 py-2 text-center">
+                          <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground block">
+                            Iluminación
+                          </span>
+                          <span className="text-xs font-bold text-accent">
+                            {lighting ? LIGHTING_LABELS[lighting] : 'No'}{' '}
+                            {lighting && (
+                              <span className="text-[10px] text-muted-foreground block font-normal">
+                                ({lighting === 'halogenos' ? `${halogenCount} uds. - ` : ''}
+                                {SUB_LIGHTING_LABELS[lightingSub]}
+                                {lighting === 'leds' ? ` - ${LED_DESIGN_LABELS[lightingDesign]}` : ''}
+                                {lighting === 'leds' && lightingSub === 'regulable' && lightingDimmer ? ` (${DIMMER_LABELS[lightingDimmer]})` : ''})
+                              </span>
+                            )}
+                          </span>
+                        </div>
+                        <div className="bg-accent/5 border border-accent/15 rounded-lg px-2 py-2 text-center">
+                          <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground block">
+                            Sujeción
+                          </span>
+                          <span className="text-xs font-bold text-accent">
+                            {SUSPENSION_LABELS[suspension]}
+                            {suspension === 'cadenas' && (
+                              <span className="text-[10px] text-muted-foreground block font-normal">
+                                ({SUB_SUSPENSION_LABELS[suspensionSub]})
+                              </span>
+                            )}
+                          </span>
+                        </div>
+                        {lightingLedUpper === 'si' && (
+                          <div className="bg-accent/5 border border-accent/15 rounded-lg px-2 py-2 text-center animate-fade-in">
+                            <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground block">
+                              Led superior
+                            </span>
+                            <span className="text-xs font-bold text-accent">
+                              Sí
+                            </span>
+                          </div>
                         )}
-                      </span>
-                    </div>
-                    {varnish === 'si' && (
-                      <div className="bg-accent/5 border border-accent/15 rounded-lg px-2 py-2 text-center animate-fade-in">
-                        <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground block">
-                          Barniz
-                        </span>
-                        <span className="text-xs font-bold text-accent">
-                          {BARNIZ_LABELS[varnish]}
-                        </span>
+                        {varnish === 'si' && (
+                          <div className="bg-accent/5 border border-accent/15 rounded-lg px-2 py-2 text-center animate-fade-in">
+                            <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground block">
+                              Barniz
+                            </span>
+                            <span className="text-xs font-bold text-accent">
+                              {BARNIZ_LABELS[varnish]}
+                            </span>
+                          </div>
+                        )}
                       </div>
-                    )}
-                  </div>
+                    );
+                  })()}
                   <div className="flex items-center justify-between bg-accent/10 border border-accent/20 rounded-lg px-4 py-2 mb-4">
                     <span className="text-xs font-bold text-foreground">
                       Total configurado{' '}
