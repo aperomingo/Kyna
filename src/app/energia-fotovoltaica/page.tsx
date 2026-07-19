@@ -56,7 +56,6 @@ export default function SolarPage() {
             alt="Energía Fotovoltaica" 
             fill 
             priority
-            unoptimized
             className="object-cover"
           />
         </div>

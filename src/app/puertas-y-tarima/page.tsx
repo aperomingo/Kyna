@@ -67,7 +67,6 @@ export default function PuertasYTarimaPage() {
             alt="Puertas y Tarima"
             fill
             priority
-            unoptimized
             className="object-cover"
           />
         </div>

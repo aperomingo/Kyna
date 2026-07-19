@@ -60,7 +60,6 @@ export default function Home() {
             alt="Grupo Kyna" 
             fill 
             priority
-            unoptimized
             className="object-cover"
           />
         </div>
@@ -119,7 +118,6 @@ export default function Home() {
                   src={service.image} 
                   alt={service.title} 
                   fill 
-                  unoptimized
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
               </div>

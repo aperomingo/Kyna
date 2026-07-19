@@ -1,4 +1,4 @@
-import Image from "next/image";
+import NextImage from "next/image";
 import { cn } from "@/lib/utils";
 
 interface Product {
@@ -24,7 +24,7 @@ export default function ProductSection({ products }: ProductSectionProps) {
         >
           {/* Image first in DOM for mobile column order */}
           <div className="flex-1 w-full aspect-video md:aspect-square relative rounded-[2rem] overflow-hidden glass shadow-2xl transition-all duration-500 hover:shadow-accent/10">
-            <Image 
+            <NextImage 
               src={product.image} 
               alt={product.title} 
               fill 

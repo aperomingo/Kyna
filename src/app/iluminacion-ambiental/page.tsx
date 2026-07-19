@@ -50,7 +50,6 @@ export default function IluminacionPage() {
             alt="Iluminación Ambiental" 
             fill
             priority
-            unoptimized
             className="object-cover"
           />
         </div>

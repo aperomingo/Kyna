@@ -37,7 +37,6 @@ export default function Header() {
             alt="Grupo Kyna"
             fill 
             priority
-            unoptimized
             className="object-contain"
           />
         </Link>

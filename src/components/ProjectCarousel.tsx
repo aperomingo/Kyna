@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import Image from "next/image";
+import NextImage from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -63,26 +63,34 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
       onTouchEnd={onTouchEnd}
     >
       <div className="aspect-[3/2] md:aspect-video relative rounded-none md:rounded-[2.5rem] overflow-hidden shadow-2xl glass">
-        {projects.map((project, index) => (
-          <div
-            key={index}
-            className={cn(
-              "absolute inset-0 transition-opacity duration-1000",
-              index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
-            )}
-          >
-            <Image
-              src={project.image}
-              alt={project.title}
-              fill
-              sizes="(max-width: 1024px) 100vw, 1024px"
-              className="object-cover"
-            />
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end px-8 py-5 h-1/4">
-              <h4 className="text-base font-semibold text-white leading-tight">{project.title}</h4>
+        {projects.map((project, index) => {
+          const isActive = index === currentIndex;
+          const isPrev = index === (currentIndex - 1 + projects.length) % projects.length;
+          const isNext = index === (currentIndex + 1) % projects.length;
+
+          if (!isActive && !isPrev && !isNext) return null;
+
+          return (
+            <div
+              key={index}
+              className={cn(
+                "absolute inset-0 transition-opacity duration-1000",
+                isActive ? "opacity-100 z-10" : "opacity-0 z-0"
+              )}
+            >
+              <NextImage
+                src={project.image}
+                alt={project.title}
+                fill
+                sizes="(max-width: 1024px) 100vw, 1024px"
+                className="object-cover"
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end px-8 py-5 h-1/4">
+                <h4 className="text-base font-semibold text-white leading-tight">{project.title}</h4>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
 
         {/* Controls */}
         <button

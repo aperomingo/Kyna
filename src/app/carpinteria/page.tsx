@@ -50,7 +50,6 @@ export default function CarpinteriaPage() {
             alt="Carpintería"
             fill
             priority
-            unoptimized
             className="object-cover"
           />
         </div>
